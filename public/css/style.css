@@ -1,0 +1,36 @@
+/*text meant only for screen readers*/
+.screen-reader-text {
+    position: relative;
+
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    
+}
+
+/*HOMEPAGE*/
+/*hero*/
+.homepage-hero {
+    position: relative;
+    height: 70vh;
+    background-image: url('https://unsplash.com/photos/architectural-photography-of-building-with-people-in-it-during-nighttime-lFv0V3_2H6s');
+    background-size: cover;
+    background-position: center;
+    text-align: centre;
+    justify-content: centre;
+}
+
+.homepage-hero h1 {
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+    color: white;
+}
+
+.homepage-hero p {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+}

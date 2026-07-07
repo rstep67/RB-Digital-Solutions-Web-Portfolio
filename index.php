@@ -2,8 +2,30 @@
 
 require_once __DIR__ . '/config/config.php';
 
-$pageTitle = 'Home';
+$page = $_GET['page'] ?? 'homepage';
+
+switch ($page) {
+    case 'login':
+        $pagetitle = "Login";
+        break;
+
+    case 'homepage':
+        $pagetitle = "Home";
+        break; 
+}
 
 require __DIR__ . '/app/views/partials/header.php';
-require __DIR__ . '/app/views/partials/footer.php';
-require __DIR__ . '/app/views/home/home_content.php';
+
+switch ($page) {
+    case 'login':
+        $pagetitle = "Login";
+        require __DIR__ .'/app/views/login/login.php';
+        break;
+
+    case 'homepage':
+        $pagetitle = "Home";
+        require __DIR__ .'/app/views/homepage/homepage.php'; 
+        break;  
+        
+}
+require __DIR__ .'/app/views/partials/footer.php';
