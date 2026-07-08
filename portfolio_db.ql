@@ -58,6 +58,7 @@ CREATE TABLE contact_submissions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL,
+    subject VARCHAR(150),
     message TEXT NOT NULL,
     submitted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
