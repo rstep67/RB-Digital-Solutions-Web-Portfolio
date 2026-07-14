@@ -25,12 +25,12 @@ body {
     text-align: center;
     font-size: 4rem;
     font-weight: bold;
-    color: white;
+    color: rgb(124, 67, 67);
 }
 
 .homepage-hero p {
     text-align: center;
     font-size: 1rem;
     font-weight: bold;
-    color: white;
+    color: rgb(146, 81, 81);
 }

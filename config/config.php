@@ -2,4 +2,4 @@
 
 session_start();
 
-define('BASE_URL', '/web-portfolio');
+define('BASE_URL', '/Web-Portfolio');
