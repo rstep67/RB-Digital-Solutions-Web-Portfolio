@@ -24,6 +24,7 @@ $pagetitles = [
     'dahsboard' => 'Dashboard',
     'admin_dashboard' => 'Admin dashboard',
     'homepage' => 'Home',
+    'project' => 'Project Details'
 ];
 
 $pagetitle = $pagetitles[$page] ?? 'Home';
@@ -46,6 +47,10 @@ switch ($page) {
 
     case 'dashboard':
         require __DIR__ .'/app/views/dashboard/dashboard.php';
+        break;
+
+    case 'project':
+        require __DIR__ . '/app/views/project/project.php';
         break;
 
     case 'admin_dashboard':

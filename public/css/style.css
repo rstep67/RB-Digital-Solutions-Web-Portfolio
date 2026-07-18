@@ -43,6 +43,68 @@ body {
     margin: auto;
 }
 
+/*two column experience/skills section*/
+.two-col-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 10px 30px;
+}
+
+@media (max-width:600px) {
+    .two-col-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+/*Projects section*/
+.projects-section {
+    padding: 3rem 0;
+}
+
+.projects-section h2 {
+    text-align: center;
+    margin-bottom:2rem;
+}
+
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.project-row {
+    position: relative;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 180px;
+    border-radius: 10px;
+    background-color: grey;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    text-decoration:none;
+    padding: 0 2rem;
+
+}
+
+.project-row-overlay {
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.project-row-title{
+    position: relative;
+    z-index: 1;
+    color: white;
+    font-size: 2rem;
+}
+
+
+/*project detail page*/
+.project-detail-section {
+    padding: 3rem;
+}
 /*navbar*/
 .site-header {
     width:100%;
@@ -84,7 +146,8 @@ body {
 
 .site-nav ul li a {
     display:block;
-color: white;
-padding:18px 16px;
-text-decoration: none;
+    color: white;
+    padding:18px 16px;
+    text-decoration: none;
 }
+
