@@ -90,7 +90,9 @@ body {
 }
 
 .project-row-overlay {
-    background: rgba(0, 0, 0, 0.55);
+    position: absolute;
+    inset:0;
+    background: rgba(0, 0, 0, 0.75);
 }
 
 .project-row-title{
@@ -98,6 +100,12 @@ body {
     z-index: 1;
     color: white;
     font-size: 2rem;
+}
+
+.project-row-chevron {
+    position:relative;
+    color: white;
+    font-weight: bold;
 }
 
 

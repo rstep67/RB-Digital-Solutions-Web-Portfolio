@@ -17,6 +17,7 @@ if (!$entry) {
 ?>
 
 <section class="project-detail-section">
+    div class
     <div class="container">
         <a href="<?= BASE_URL ?>/?page=homepage" class ="backlink"> &larr; Back to Projects</a>
 
