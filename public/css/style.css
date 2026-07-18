@@ -13,19 +13,21 @@ body {
 /*hero*/
 .homepage-hero {
     position: relative;
+    display: flex;
     height: 70vh;
-    background-image: url('https://unsplash.com/photos/architectural-photography-of-building-with-people-in-it-during-nighttime-lFv0V3_2H6s');
+    background-image: url('https://images.unsplash.com/photo-1528988719300-046ff7faf8cb?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     background-size: cover;
     background-position: center;
     text-align: centre;
     justify-content: centre;
+    height: 20em;
 }
 
 .homepage-hero h1 {
     text-align: center;
     font-size: 4rem;
     font-weight: bold;
-    color: rgb(124, 67, 67);
+    color: #354A21;
 }
 
 .homepage-hero p {
@@ -33,4 +35,56 @@ body {
     font-size: 1rem;
     font-weight: bold;
     color: rgb(146, 81, 81);
+}
+
+.homepage-hero-body {
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+}
+
+/*navbar*/
+.site-header {
+    width:100%;
+    background-color: #607D3B;
+    
+}
+
+
+.logo {
+    
+}
+
+
+
+.inner-header {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    
+}
+
+.site-nav ul li a:hover {
+    background-color:#74B72E
+}
+.site-nav ul {
+    list-style-type: none;
+    display: flex;
+    overflow: hidden;
+    gap:1.5rem;
+    margin: 0;
+    padding: 0px;
+
+}
+
+.site-nav ul li {
+    display: flex;
+    
+}
+
+.site-nav ul li a {
+    display:block;
+color: white;
+padding:18px 16px;
+text-decoration: none;
 }

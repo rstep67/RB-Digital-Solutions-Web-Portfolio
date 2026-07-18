@@ -9,7 +9,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         
-        <link rel="stylesheet" href="/web-portfolio/public/css/style.css">
+        <link rel="stylesheet" href="/Web-Portfolio/public/css/style.css">
         
         <title><?= $pagetitle;?></title>
 
@@ -19,17 +19,18 @@
     <body>
         <header class="site-header">
             <div class="container inner-header">
-                <!-- eventually add hamburger menu-->
+                <img src="/Web-Portfolio/public/images/RBDS Logo New.png" class="logo" alt="RB Digital Solutions Logo">
 
                 <nav class="site-nav">
                     <ul>
-                        <li>
-                            <a href="http://localhost/Web-Portfolio/?page=homepage">Home</a> 
-                            <a href="http://localhost/Web-Portfolio/?page=contact-form.php"> Contact </a>
-                            <a href="http://localhost/Web-Portfolio/?page=login">login</a>
+                        
+                            <li><a href="http://localhost/Web-Portfolio/?page=homepage">Home</a> </li>
+                            <li><a href="http://localhost/Web-Portfolio/?page=contact-form.php"> Contact </a></li>
+                            <li><a href="http://localhost/Web-Portfolio/?page=login">Login</a></li>
+                           
 
                     
-                        </li>
+                        
                     </ul>
                 </nav>
             </div>

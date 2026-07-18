@@ -16,34 +16,39 @@ elseif ($page === 'change_password' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     
+//pagetitle array before header.php to ensure page name can bedisplayed
 
+$pagetitles = [
+    'login' => 'Login',
+    'change_pw' => 'Change password',
+    'dahsboard' => 'Dashboard',
+    'admin_dashboard' => 'Admin dashboard',
+    'homepage' => 'Home',
+];
+
+$pagetitle = $pagetitles[$page] ?? 'Home';
 
 
 require __DIR__ . '/app/views/partials/header.php';
 
 switch ($page) {
     case 'login':
-        $pagetitle = "Login";
         require __DIR__ .'/app/views/login/login.php';
         break;
 
     case 'homepage':
-        $pagetitle = "Home";
         require __DIR__ .'/app/views/homepage/homepage.php'; 
         break;  
 
     case 'change_password':
-        $pagetitle = "Change Password";
         require __DIR__ .'/app/views/change_pw/change_pw.php';
         break;
 
     case 'dashboard':
-        $pagetitle = "Dashboard";
         require __DIR__ .'/app/views/dashboard/dashboard.php';
         break;
 
     case 'admin_dashboard':
-        $pagetitle = "Admin Dashboard";
         require __DIR__ .'/app/views/admin_dashboard/admin_dashboard.php';
         break;
 
