@@ -15,6 +15,9 @@ elseif ($page === 'change_password' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         require __DIR__ . '/app/controllers/change_pw_controller.php';
     }
     
+elseif ($page === 'contact' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require __DIR__ . '/app/controllers/contact_controller.php';
+}
     
 //pagetitle array before header.php to ensure page name can bedisplayed
 
@@ -51,6 +54,11 @@ switch ($page) {
 
     case 'project':
         require __DIR__ . '/app/views/project/project.php';
+        break;
+
+
+    case 'contact':
+        require __DIR__ . '/app/views/contact/contact-form.php';
         break;
 
     case 'admin_dashboard':

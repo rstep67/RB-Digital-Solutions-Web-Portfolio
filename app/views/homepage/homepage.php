@@ -64,4 +64,7 @@ $portfolio_entries = get_portfolio_entries($pdo);
     </div>
     
 </section>
+
+<?php include __DIR__ . '/../contact/contact_form.php' ;?>
+
 </body>

@@ -108,6 +108,24 @@ body {
     font-weight: bold;
 }
 
+/*contact form*/
+.contact-form-section{
+    padding: 50px 20px;
+}
+.contact-form-section .container {
+    background-color: lightgray;
+    width: 500px;
+    max-width: 90%;
+    padding: 50px;
+    margin: 0 auto;
+}
+.contact-form-section input, .contact-form-section textarea {
+    width:100%;
+    padding:12px;
+    display:block;
+    align-items: center;
+}
+
 
 /*project detail page*/
 .project-detail-section {
