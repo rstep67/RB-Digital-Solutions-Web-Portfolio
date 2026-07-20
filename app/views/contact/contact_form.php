@@ -23,6 +23,7 @@
 
 
         <form action="<?= BASE_URL ?>/?page=contact" method="post">
+            <h2 class="contact-form-title">Contact</h2>
             <label for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Your name" required>
             <label for="cont_email">Email</label>
@@ -32,7 +33,7 @@
             <label for="message">Message</label>
             <textarea id="message" name="contact_message" placeholder="Your message" required> </textarea>
 
-            <input type="submit" value="Submit">
+            <button type="submit">Submit</button>
         </form>
     </div>
 </section>

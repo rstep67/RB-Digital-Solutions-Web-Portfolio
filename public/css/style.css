@@ -4,7 +4,7 @@
 
 }
 
-body {
+body, button {
     font-family: "Montserrat", sans-serif;
     
 }
@@ -110,22 +110,73 @@ body {
 
 /*contact form*/
 .contact-form-section{
-    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 20px;
+
 }
 .contact-form-section .container {
     background-color: lightgray;
     width: 500px;
     max-width: 90%;
     padding: 50px;
+    border-radius: 15px;
     margin: 0 auto;
 }
+
+.contact-form-section label {
+    display: block;
+    margin-bottom: 2px;
+    
+}
+
+.contact-form-section .contact-form-title {
+    
+
+}
 .contact-form-section input, .contact-form-section textarea {
-    width:100%;
+    width:90%;
     padding:12px;
     display:block;
+    margin-bottom: 15px;
+    border: 2px solid #354A21;
+    border-radius: 5px;
     align-items: center;
 }
 
+.contact-form-section textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+.contact-form-section button {
+    width: 200px;
+    display: block;
+    
+    padding: 10px;
+    margin: 20px auto 0 auto;
+    background-color: #98BF64;
+    border-radius: 25px;
+}
+
+.contact-form-section button:hover {
+    background-color:#74B72E
+}
+
+@media (max-width: 600px) {
+    .contact-form-section .container {
+        padding: 20px;
+    }
+}
+
+.form-errors {
+    background-color: lightgrey;
+    border: 1px solid #354A21;
+    border-radius: 5px;
+    padding: 10 20px;
+    margin-bottom: 15px;
+}
 
 /*project detail page*/
 .project-detail-section {
