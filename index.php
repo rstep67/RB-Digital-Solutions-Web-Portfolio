@@ -18,6 +18,10 @@ elseif ($page === 'change_password' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 elseif ($page === 'contact' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require __DIR__ . '/app/controllers/contact_controller.php';
 }
+
+elseif ($page === 'new_client_controller' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require __DIR__ . '/app/controllers/new_client_controller.php';
+}
     
 //pagetitle array before header.php to ensure page name can bedisplayed
 

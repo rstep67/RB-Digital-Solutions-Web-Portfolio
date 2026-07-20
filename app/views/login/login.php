@@ -29,8 +29,8 @@ unset($_SESSION['old_login_email']);
          <form action="<?= BASE_URL ?>/?page=login" method="post" class="login-form" aria-labelledby="login-form-title">
         <div class="container">
             <div class="user-login-area">
-                <label for="username">Username</label>
-                <input type="text" placeholder="Enter Username" name="email" required>
+                <label for="email">Email</label>
+                <input type="text" placeholder="Enter Email" name="email" required>
 
                 <label for="password">Password</label>
                 <input type="password" placeholder="enter password" name="password" required>
