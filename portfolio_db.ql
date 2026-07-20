@@ -6,7 +6,7 @@ CREATE TABLE users (
     full_name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    role ENUM ('Client','Admin') NOT NULL,
+    role ENUM ('client','admin') NOT NULL,
     password_changed BOOLEAN NOT NULL DEFAULT FALSE,
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -66,5 +66,5 @@ CREATE TABLE contact_submissions (
 -- Creating admin account
 -- DONT push to git with real details!
 -- INSERT INTO users (full_name, email, password_hash, role, password_changed)
--- VALUES ('Rosie Admin', 'test@rbdigitalsolutions.co.uk', 'hashedpassword', 'Admin', TRUE);
+-- VALUES ('Rosie Admin', 'test@rbdigitalsolutions.co.uk', 'hashedpassword', 'admin', TRUE);
 

@@ -1,5 +1,5 @@
 <?php
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'Admin') {
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('location: ' . BASE_URL . '/?page=login');
     exit;
 }

@@ -42,7 +42,7 @@ $_SESSION['password_changed'] =true;
 
 
 
-if ($_SESSION['role'] === 'Admin') {
+if ($_SESSION['role'] === 'admin') {
     header('location:' . BASE_URL . '/?page=admin_dashboard');
 } 
 else {

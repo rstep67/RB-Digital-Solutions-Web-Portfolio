@@ -50,7 +50,7 @@ if (!$_SESSION['password_changed']) {
 }
 
 //if already changed route based on role
-if ($_SESSION['role'] === 'Admin') {
+if ($_SESSION['role'] === 'admin') {
     header('location: ' . BASE_URL . '/?page=admin_dashboard');
 
 }
