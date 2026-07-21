@@ -11,15 +11,15 @@ if ($page === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require __DIR__ . '/app/controllers/login_controller.php';
 }
 
-elseif ($page === 'change_password' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+else if ($page === 'change_password' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         require __DIR__ . '/app/controllers/change_pw_controller.php';
     }
     
-elseif ($page === 'contact' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+else if ($page === 'contact' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require __DIR__ . '/app/controllers/contact_controller.php';
 }
 
-elseif ($page === 'new_client_controller' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+else if ($page === 'new_client_controller' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require __DIR__ . '/app/controllers/new_client_controller.php';
 }
     
