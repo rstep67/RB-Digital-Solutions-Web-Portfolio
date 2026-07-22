@@ -20,14 +20,20 @@ body, button {
     background-position: center;
     text-align: centre;
     justify-content: centre;
-    height: 20em;
+    /**height: 20em;**/
 }
+
+.homepage-hero-body .tagline {
+    
+}
+
 
 .homepage-hero h1 {
     text-align: center;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: bold;
     color: #354A21;
+    margin: 0px;
 }
 
 .homepage-hero p {

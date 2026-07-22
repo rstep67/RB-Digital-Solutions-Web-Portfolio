@@ -19,9 +19,18 @@ else if ($page === 'contact' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require __DIR__ . '/app/controllers/contact_controller.php';
 }
 
+else if ($page === 'new_client' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require __DIR__ . '/app/controllers/new_client_controller.php';
+}
+
+else if ($page === 'manage_client' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require __DIR__ . '/app/controllers/manage_client_controller.php';
+}
 else if ($page === 'new_client_controller' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require __DIR__ . '/app/controllers/new_client_controller.php';
 }
+    
+    
     
 //pagetitle array before header.php to ensure page name can bedisplayed
 
