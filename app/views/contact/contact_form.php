@@ -27,7 +27,7 @@
             <label for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Your name" required>
             <label for="cont_email">Email</label>
-            <input type="text" id="cont_email" name="contact_email" placeholder="Your email" required>
+            <input type="email" id="cont_email" name="contact_email" placeholder="Your email" required>
             <label for="subject">Subject</label>
             <input type="text" id="subject" name="subject" placeholder="Message subject" required>
             <label for="message">Message</label>

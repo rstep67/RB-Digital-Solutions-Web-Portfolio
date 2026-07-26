@@ -47,6 +47,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo ->prepare('INSERT INTO users (full_name,email,password_hash,role,password_changed,is_active) VALUES (?,?,?,?,?,?)');
         $stmt ->execute([$full_name,$email,$password_hash,'client', false,true]);
 
+        //notify client of account creation and password change with maildev
+        require_once __DIR__ . '/../../vendor/autoload.php';
+        $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+
+        try {
+            $mail ->isSMTP();
+            $mail ->Host = 'localhost';
+            $mail ->Port = 1025;
+            $mail ->SMTPAuth = false;
+            $mail ->SMTPAutoTLS = false;
+            $mail ->setFrom('noreply@rbdigitalsolutions.co.uk', 'RB Digital Solutions');
+            $mail ->addAddress($email, $full_name);
+
+            $mail -> Subject = 'RBDS Account Created!';
+            $mail -> Body =  "Hi $full_name, your RBDS account has been created. Please log in now and change your password. \n Your temporary password is: $temp_password \n Thanks, \n RBDS";
+            $mail ->send();
+
+                
+            
+        }
+
+        catch (PHPMailer\PHPMailer\Exception $mailException) {
+            error_log('New client notification email failed:' . $mailException ->getMessage());
+
+        }
+
         $_SESSION['client_success'] ='Client account created for ' . $full_name;
     } 
     }

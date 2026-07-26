@@ -19,9 +19,9 @@ else if ($page === 'contact' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require __DIR__ . '/app/controllers/contact_controller.php';
 }
 
-else if ($page === 'new_client' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+/*else if ($page === 'new_client' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require __DIR__ . '/app/controllers/new_client_controller.php';
-}
+}*/
 
 else if ($page === 'manage_client' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require __DIR__ . '/app/controllers/manage_client_controller.php';
