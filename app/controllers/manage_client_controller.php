@@ -1,6 +1,11 @@
 <?php
 $error=[];
 
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header('location: ' . BASE_URL . '/?page=login');
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $client_id = filter_input(INPUT_POST, 'client_id', FILTER_VALIDATE_INT);
     $full_name = filter_input(INPUT_POST,'full_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);

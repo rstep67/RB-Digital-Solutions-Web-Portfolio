@@ -29,7 +29,19 @@ else if ($page === 'manage_client' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 else if ($page === 'new_client_controller' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require __DIR__ . '/app/controllers/new_client_controller.php';
 }
-    
+
+else if ($page === 'new_project' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require __DIR__ . '/app/controllers/new_project_controller.php';
+}
+
+else if ($page === 'upload_document' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require __DIR__ . '/app/controllers/upload_document_controller.php';
+}
+
+if ($page === 'download_document') {
+    require __DIR__ . '/app/controllers/download_document_controller.php';
+    exit; 
+}
     
     
 //pagetitle array before header.php to ensure page name can bedisplayed
@@ -78,7 +90,9 @@ switch ($page) {
         require __DIR__ .'/app/views/admin_dashboard/admin_dashboard.php';
         break;
 
-    
+    case 'download_document':
+        require __DIR__ . '/app/controllers/download_document_controller.php';
+        break;
 
     default:
     //fallback for unknown page requests

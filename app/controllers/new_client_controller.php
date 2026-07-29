@@ -1,5 +1,10 @@
 <?php
 
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header('location: ' . BASE_URL . '/?page=login');
+    exit;
+}
+
 $error=[];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $full_name = filter_input(INPUT_POST, 'full_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);

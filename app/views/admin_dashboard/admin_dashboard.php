@@ -116,6 +116,77 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         </form>
         <?php endif;?>
     </details>
+    <?php
+    //document upload section
+    $clients = $pdo ->query("SELECT id, full_name, email FROM users WHERE role = 'client'");
+    $projects = $pdo ->query ('SELECT projects.id, projects.title, users.full_name FROM projects 
+    JOIN users ON projects.user_id = users.id ORDER BY title') ->fetchAll();
+
+    ?>
+
+    <?php if (!empty($_SESSION['document_success'])): ?>
+    <p class="flash-success"> <?=htmlspecialchars($_SESSION['document_success']) ?> </p>
+    <?php unset($_SESSION['document_success']);?>
+    <?php endif;?>
+
+    <?php if (!empty($_SESSION['document_errors'])):?>
+        <ul class="flash-errors">
+            <?php foreach ($_SESSION['document_errors'] as $msg): ?>
+                <li> <?=htmlspecialchars($msg)?> </li>
+                <?php endforeach;?>
+            </ul>
+        <?php unset($_SESSION['document_errors']);?>
+    <?php endif; ?>
+
+    <details>
+        <summary>Create New Project</summary>
+        <form method="post" action="<?= BASE_URL ?>/?page=new_project">
+            <label for="user_id">Assign to client</label>
+            <select name="user_id" id="user_id" required>
+                <option value="">Select client</option>
+                <?php foreach ($clients as $client): ?>
+                    <option value="<?=htmlspecialchars($client['id'])?>">
+                        <?= htmlspecialchars($client['full_name']) ?> (<?=htmlspecialchars($client['email']) ?>)
+                    </option>
+                    <?php endforeach;?>
+            </select>
+
+            <label for="title">Project title</label>
+        <input type="text" name="title" id="title" required maxlength="150">
+
+        <label for="description">Description</label>
+        <textarea name="description" id="description" rows="4"></textarea>
+
+        <label for="status">Status</label>
+        <input type="text" name="status" id="status" placeholder="e.g. Not Started" maxlength="150" required>
+
+        <button type="submit">Create Project</button>
+        </form>
+    </details>
+
+    <Details>
+
+     <summary>Upload project file</summary>
+        <form method="post" action="<?= BASE_URL ?>/?page=upload_document" enctype="multipart/form-data">
+            <label for="project_id">Project</label>
+            <select name="project_id" id="project_id" required>
+                <option value="">Select option</option>
+                <?php foreach ($projects as $project): ?>
+                    <option value="<?=htmlspecialchars($project['id'])?>">
+                        <?= htmlspecialchars($project['title']) ?> — <?= htmlspecialchars($project['full_name']) ?>
+                    </option>
+                    <?php endforeach;?>
+            </select>
+
+            <label for="document">file</label>
+            <input type="file" name="document" id="document" accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx" required>
+                    <button type="submit">Upload file</button>
+
+        </form>
+
+
+    </Details>
+
 
 
 </div>
