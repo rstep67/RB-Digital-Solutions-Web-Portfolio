@@ -1,0 +1,3 @@
+<?php
+define('TURNSTILE_SITE_KEY', 'your-site-key-here');
+define('TURNSTILE_SECRET_KEY', 'your-secret-key-here');

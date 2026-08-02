@@ -32,7 +32,10 @@
             <input type="text" id="subject" name="subject" placeholder="Message subject" required>
             <label for="message">Message</label>
             <textarea id="message" name="contact_message" placeholder="Your message" required> </textarea>
-
+            
+            <!--cloudflare turnstile-->
+            
+<div class="cf-turnstile" data-sitekey="<?=TURNSTILE_SITE_KEY?>"></div>
             <button type="submit">Submit</button>
         </form>
     </div>

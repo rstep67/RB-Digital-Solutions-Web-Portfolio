@@ -1,5 +1,20 @@
 <?php 
 
+//verify turnstile token with clurflares siteverify endpoint before trusting
+function verifyTurnstile($token) {
+    $ch = curl_init('https://challenges.cloudflare.com/turnstile/v0/siteverify');
+    curl_setopt($ch, CURLOPT_POST, true);
+
+    curl_setopt($ch,CURLOPT_POSTFIELDS, ['secret' =>TURNSTILE_SECRET_KEY, 'response' => $token,]);
+    $result= curl_exec($ch);
+    curl_close($ch);
+
+    $result = json_decode($result, true);
+    return $result['success'] ?? false;
+
+
+    
+}
 
 $error=[];
 
@@ -25,6 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($subject)) {
         $error[] = 'Subject is blank';
+    }
+    //cloudflare turnstile
+    if (empty($turnstile_token) || !verifyTurnstile($turnstile_token)) {
+        $error[]='bot verification failed, try again';
     }
 
     if (empty($error)) {
