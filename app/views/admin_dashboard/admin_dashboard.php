@@ -114,6 +114,11 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
                 <input type="submit" value="Update client">
 
         </form>
+        <form action="<?= BASE_URL ?>/?page=delete_client_controller" method="post"
+          onsubmit="return confirm('delete this client account? This cannot be undone.');">
+        <input type="hidden" name="client_id" value="<?= (int) $selected_client['id'] ?>">
+           <input type="submit" value="Delete client" class="btn-danger">
+       </form>
         <?php endif;?>
     </details>
     <?php
