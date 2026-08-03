@@ -42,7 +42,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         catch(PDOException $e) {
-            £error[] = 'Database error: ' . $e->getMessage();
+            $error[] = 'Database error: ' . $e->getMessage();
             
         }
     }

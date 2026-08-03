@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //generate unique filename to precent overwrites/erros, keep original display name 
             $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
             $safe_name =uniqid('doc', true) . '.' . $extension;
-            $destination = __DIR__ .'/uploads/documents/' . $safe_name;
+            $destination = __DIR__ . '/../../uploads/documents/' . $safe_name;
 
             if (move_uploaded_file($file['tmp_name'], $destination)) {
                 $stmt = $pdo ->prepare('INSERT INTO documents (project_id, file_name, file_path) VALUES (?,?,?)');

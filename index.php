@@ -42,6 +42,10 @@ else if ($page === 'delete_client_controller' && $_SERVER['REQUEST_METHOD'] === 
     require __DIR__ . '/app/controllers/delete_client_controller.php';
 }
 
+else if ($page === 'delete_project_controller' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require __DIR__ . '/app/controllers/delete_project_controller.php';
+}
+
 
 if ($page === 'download_document') {
     require __DIR__ . '/app/controllers/download_document_controller.php';

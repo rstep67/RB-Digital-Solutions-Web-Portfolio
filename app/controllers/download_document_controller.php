@@ -24,7 +24,7 @@ if (!$is_admin && !$is_owner) {
     die ('you dont have permission to access this file');
 }
 
-$full_path = __DIR__ . '/' . $document['file_path'];
+$full_path = __DIR__ . '/../../' . $document['file_path'];
 if(!file_exists($full_path)) {
     die('file not on server');
 }

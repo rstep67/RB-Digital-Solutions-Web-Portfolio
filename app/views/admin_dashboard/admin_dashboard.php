@@ -169,6 +169,40 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         </form>
     </details>
 
+    <?php if (!empty($_SESSION['manage_project_success'])): ?>
+        <p class="flash-success"> <?=htmlspecialchars($_SESSION['manage_project_success']) ?></p>
+        <?php unset($_SESSION['manage_project_success']);?>
+    <?php endif; ?>
+
+        <?php if(!empty($_SESSION['manage_project_errors'])):?>
+            <ul class="flash-errors">
+                <?php foreach ($_SESSION['manage_project_errors'] as $msg): ?>
+                    <li><?=htmlspecialchars($msg)?></li>
+                    <?php endforeach;?>
+                    
+            </ul>
+
+            <?php unset($_SESSION['manage_project_errors']);?>
+        <?php endif; ?>
+
+        <details>
+            <summary>Delete a project</summary>
+            <form action="<?= BASE_URL?>/?page=delete_project_controller" method="post" onsubmit="return confirm('delete this project and associated documents');">
+                <label for ="delete_project_id">Project</label>
+                <select name="project_id" id="delete_project_id" required>
+                    <option value="">select projetc</option>
+                    <?php foreach ($projects as $project): ?>
+                        <option value="<?=htmlspecialchars($project['id'])?>">
+                            <?=htmlspecialchars($project['title']) ?> - <?= htmlspecialchars($project['full_name']) ?>
+                        </option>
+                        <?php endforeach;?>
+                </select>
+                <input type="submit" value="delete project" class="btn-warning">
+            </form>
+        </details>
+
+
+
     <Details>
 
      <summary>Upload project file</summary>
@@ -182,6 +216,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
                     </option>
                     <?php endforeach;?>
             </select>
+
+            
 
             <label for="document">file</label>
             <input type="file" name="document" id="document" accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx" required>
