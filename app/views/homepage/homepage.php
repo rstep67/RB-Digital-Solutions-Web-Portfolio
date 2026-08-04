@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../../models/portfolio_model.php';
 $portfolio_entries = get_portfolio_entries($pdo);
+require_once __DIR__ . '/../../models/testimonial_model.php';
+$featured_testimonial = getFeaturedTestimonial($pdo);
 ?>
 
 <body>
@@ -68,4 +70,12 @@ $portfolio_entries = get_portfolio_entries($pdo);
 <?php include __DIR__ . '/../contact/contact_form.php' ;
 ?>
 
+<?php if ($featured_testimonial): ?>
+    <section class="testimonial-featured">
+        <div class="container">
+            <p class="testimonial-quote">"<?= htmlspecialchars($featured_testimonial['content']) ?>"</p>
+            <p class="testimonial-name">— <?= htmlspecialchars($featured_testimonial['full_name']) ?></p>
+        </div>
+    </section>
+<?php endif;?>
 </body>
