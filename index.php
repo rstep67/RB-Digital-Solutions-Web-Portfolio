@@ -46,6 +46,10 @@ else if ($page === 'delete_project_controller' && $_SERVER['REQUEST_METHOD'] ===
     require __DIR__ . '/app/controllers/delete_project_controller.php';
 }
 
+else if ($page === 'privacy_policy' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require __DIR__ . '/app/views/privacy_policy.php';
+}
+
 
 if ($page === 'download_document') {
     require __DIR__ . '/app/controllers/download_document_controller.php';
@@ -92,7 +96,7 @@ switch ($page) {
 
 
     case 'contact':
-        require __DIR__ . '/app/views/contact/contact-form.php';
+        require __DIR__ . '/app/views/contact/contact_form.php';
         break;
 
     case 'admin_dashboard':
@@ -102,6 +106,10 @@ switch ($page) {
     case 'download_document':
         require __DIR__ . '/app/controllers/download_document_controller.php';
         break;
+
+    case 'privacy_policy':
+    require __DIR__ . '/app/views/privacy_policy/privacy_policy.php';
+    break;
 
     default:
     //fallback for unknown page requests

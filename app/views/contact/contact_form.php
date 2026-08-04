@@ -36,7 +36,12 @@
             <!--cloudflare turnstile-->
             
 <div class="cf-turnstile" data-sitekey="<?=TURNSTILE_SITE_KEY?>"></div>
-            <button type="submit">Submit</button>
+       <label class="checkbox-label" for="privacy_policy_agreed">
+        <input type="checkbox" id="privacy_policy_agreed" name="privacy_policy_agreed" required>
+        I have read and agreed to the <a href="<?= BASE_URL ?>/?page=privacy_policy" target="_blank"> privacy policy </a>
+       </label>     
+
+<button type="submit">Submit</button>
         </form>
     </div>
 </section>

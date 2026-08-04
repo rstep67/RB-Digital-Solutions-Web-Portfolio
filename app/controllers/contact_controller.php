@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $subject =trim($subject);
     $message =filter_input(INPUT_POST, 'contact_message', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $message = trim($message);
+    $turnstile_token = filter_input(INPUT_POST, 'cf-turnstile-response', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     if (empty($name)) {
         $error[] = 'Name is blank';
@@ -41,6 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($subject)) {
         $error[] = 'Subject is blank';
     }
+
+    if (empty($_POST['privacy_policy_agreed'])) {
+        $error[] = 'Confirm privacy policy';
+    }
+
+
     //cloudflare turnstile
     if (empty($turnstile_token) || !verifyTurnstile($turnstile_token)) {
         $error[]='bot verification failed, try again';
