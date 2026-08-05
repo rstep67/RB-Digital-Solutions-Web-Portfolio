@@ -67,8 +67,10 @@ $featured_testimonial = getFeaturedTestimonial($pdo);
     
 </section>
 
+<section id="contact">
 <?php include __DIR__ . '/../contact/contact_form.php' ;
 ?>
+</section>
 
 <?php if ($featured_testimonial): ?>
     <section class="testimonial-featured">

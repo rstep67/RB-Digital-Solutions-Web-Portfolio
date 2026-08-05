@@ -26,7 +26,7 @@
                     <ul>
                         
                             <li><a href="http://localhost/Web-Portfolio/?page=homepage">Home</a> </li>
-                            <li><a href="http://localhost/Web-Portfolio/?page=contact-form.php"> Contact </a></li>
+                            <li><a href="http://localhost/Web-Portfolio/?page=homepage#contact"> Contact </a></li>
                             <?php if (isset($_SESSION['role'])): ?>
                                 <?php if ($_SESSION['role'] === 'admin'):?>
                                 <li><a href="<?= BASE_URL?>/?page=admin_dashboard">Dashboard</a></li>
