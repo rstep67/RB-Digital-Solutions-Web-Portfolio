@@ -47,6 +47,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     <!--manage existing clients area -->
     <?php 
     require_once __DIR__ . '/../../models/user_model.php';
+    require_once __DIR__ . '/../../models/testimonial_model.php';
 
     $all_clients = get_all_clients($pdo);
 
@@ -227,6 +228,37 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
 
     </Details>
+
+    <!--testimonial management-->
+    <details>
+        <summary>Manage Testimonials</summary>
+        <?php $testimonials = getAllTestimonials($pdo); ?>
+        <?php foreach ($testimonials as $testimonial): ?>
+            <div class="testimonial-admin-row">
+                <p>
+                    <strong>
+                        <?= htmlspecialchars($testimonial['full_name']) ?>
+                    </strong>: <?=htmlspecialchars($testimonial['content']) ?>
+
+                </p>
+
+                <form action="<?= BASE_URL ?> /?page=toggle_testimonial_controller" method="post">
+                    <input type="hidden" name="testimonial_id" value="<?htmlspecialchars($testimonial['id']) ?>">
+                    <input type="hidden" name="toggle_field" value="is_visible">
+                    <input type="submit" value="<?=$testimonial['is_visible'] ? 'hide' : 'show' ?>">
+
+                </form>
+
+                <form action="<?= BASE_URL ?> /?page=toggle_testimonial_controller" method="post">
+                    <input type="hidden" name="testimonial_id" value="<?=htmlspecialchars($testimonial['id']) ?>">
+                    <input type="hidden" name="toggle_field" value="is_featured">
+                    <input type="submit" value="<?= $testimonial['is_featured'] ? 'unfeatured' : 'featured' ?>">
+
+                    </input>
+                </form>
+            </div>
+            <?php endforeach; ?>
+    </details>
 
 
 

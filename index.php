@@ -50,6 +50,9 @@ else if ($page === 'privacy_policy' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require __DIR__ . '/app/views/privacy_policy.php';
 }
 
+else if ($page === 'toggle_testimonial_controller') {
+    require __DIR__ . '/app/controllers/toggle_testimonial_controller.php';
+}
 
 if ($page === 'download_document') {
     require __DIR__ . '/app/controllers/download_document_controller.php';
@@ -110,6 +113,12 @@ switch ($page) {
     case 'privacy_policy':
     require __DIR__ . '/app/views/privacy_policy/privacy_policy.php';
     break;
+
+    case 'logout':
+        require_once 'app/controllers/logout_controller.php';
+        break;
+
+    
 
     default:
     //fallback for unknown page requests
