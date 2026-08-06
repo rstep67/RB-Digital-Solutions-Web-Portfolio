@@ -80,4 +80,27 @@ $featured_testimonial = getFeaturedTestimonial($pdo);
         </div>
     </section>
 <?php endif;?>
+
+<!--wordpress blog integration-->
+<section class="latest_posts">
+    <div class="container">
+        <h2>Latest blog posts from willdaywm.co.uk</h2>
+
+        <?php if (!empty($latest_posts)): ?>
+            <div class="post-grid">
+                <?php foreach ($latest_posts as $post): ?>
+                    <article class="post-card">
+                        <h3><?= htmlspecialchars($post->title->rendered) ?></h3>
+                        <p><?=htmlspecialchars(mb_strimwidth(strip_tags($post->excerpt->rendered), 0, 150, '...'))?></p>
+                        <a href="<?=htmlspecialchars($post->link)?>" target="_blank" rel="noopener noreferrer">
+                            Read more on willdaywm.co.uk
+                        </a>
+                    </article>
+                    <?php endforeach; ?>
+            </div>
+            <?php else: ?>
+                <p> unable to display latest posts at this time</p>
+            <?php endif;?>
+    </div>
+</section>
 </body>

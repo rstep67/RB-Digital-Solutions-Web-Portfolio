@@ -82,7 +82,9 @@ switch ($page) {
         break;
 
     case 'homepage':
+        require __DIR__ .'/app/controllers/wordpress_controller.php';
         require __DIR__ .'/app/views/homepage/homepage.php'; 
+        
         break;  
 
     case 'change_password':
@@ -117,6 +119,8 @@ switch ($page) {
     case 'logout':
         require_once 'app/controllers/logout_controller.php';
         break;
+
+        
 
     
 
