@@ -311,8 +311,51 @@ body, button {
 
 .site-footer {
     background-color: #607D3B;
+    margin-top: 50px;
 }
 
+.carousel-wrapper {
+    background-color: lightgrey;
+    border-radius: 25px;
+    padding: 35px 0 35px 0px;
+    
+
+}
+
+.post-card {
+
+    background-color: whitesmoke;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    text-align: center;
+
+}
+
+.post-card img {
+    display:flex;
+    justify-content: center;
+    width: 100%;
+    border-radius: 25px;
+}
+
+.post-card a {
+    background-color: #bad893;
+    text-decoration: none;
+    padding: 5px 10px 5px 10px;
+    border-radius: 50px;
+    color: white;
+}
+
+.post-card h3 {
+    font-size: 1.5rem;
+}
+
+.post-card a:hover {
+    background-color: #a6c57f;
+}
 .social-links {
     display: flex;
     

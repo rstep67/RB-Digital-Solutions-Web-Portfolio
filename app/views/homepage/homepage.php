@@ -95,7 +95,7 @@ $featured_testimonial = getFeaturedTestimonial($pdo);
                     <article class="post-card">
                         <?php
                         $featured_media = $post->_embedded->{'wp:featuredmedia'}[0] ?? null;
-                        $image_url = $featured_media->media_details->sizes->thumbnail->source_url ?? null;
+                        $image_url = $featured_media->media_details->sizes->full->source_url ?? null;
                         $image_alt = $featured_media->alt_text ?? '';
 
                         /*fallback to title if no alt test*/

@@ -12,7 +12,7 @@ added caching seperate from tutorial to stop API being called every time homepag
 
 function getLatestWordpressPosts() {
 $website_url = 'https://willdaywm.co.uk';
-$api_endpoint = '/wp-json/wp/v2/posts?_embed';
+$api_endpoint = '/wp-json/wp/v2/posts?_embed&per_page=9';
 
 $cache_dir = __DIR__ . '/../../cache';
 $cache_file = $cache_dir . '/wordpress_posts.json';
