@@ -307,13 +307,6 @@ body, button {
 
 }
 
-/*footer*/
-
-.site-footer {
-    background-color: #607D3B;
-    margin-top: 50px;
-}
-
 .carousel-wrapper {
     background-color: lightgrey;
     border-radius: 25px;
@@ -331,6 +324,7 @@ body, button {
     align-items: center;
     padding: 10px;
     text-align: center;
+    box-shadow: 5px 0px 15px -3px rgba(0,0,0,0.44);
 
 }
 
@@ -356,6 +350,66 @@ body, button {
 .post-card a:hover {
     background-color: #a6c57f;
 }
+
+
+
+/*Admin dashboard*/
+/*accordions*/
+details.admin-accordion, details.client-project-accordion {
+    background-color: lightcyan;
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 1rem;
+    overflow:hidden;
+    box-shadow: 5px 0px 15px -3px rgba(0,0,0,0.44);
+    padding-bottom:15px;
+}
+
+details.admin-accordion summary,details.client-project-accordion summary {
+    display: flex;
+    align-items:center;
+    /*gap:10px;*/
+    cursor: pointer;
+   
+    
+}
+
+details.admin-accordion summary::before,
+details.client-project-accordion summary::before {
+    content: "➤";
+    display: inline-block;
+    font-size:0.8rem;
+    transition: transform 0.2s ease;
+    padding-right:10px;
+
+
+}
+
+details.admin-accordion[open] summary::before,
+details.client-project-accordion[open] summary::before {
+    transform: rotate(90deg);
+}
+
+details.admin-accordion:hover, details.client-project-accordion:hover {
+    background-color: rgb(199, 225, 225);
+}
+
+/*client dashboard*/
+.project-status-badge {
+    margin-left: auto;
+    text-transform: capitalize;
+
+}
+
+/*footer*/
+
+.site-footer {
+    background-color: #607D3B;
+    margin-top: 50px;
+    
+    
+    
+}
 .social-links {
     display: flex;
     
@@ -373,4 +427,42 @@ body, button {
     display:flex;
     align-items: center;
     justify-content: center;
+   
+}
+
+/*footer social links*/
+.social-links li a {
+    display: flex;
+    align-items: center;
+    gap:10px;
+    color:white;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.social-links li a:hover {
+    text-decoration: underline;
+}
+
+.social-icon {
+    width: 20px;
+    height:20px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+/*make sticky/at bottom of viewport*/
+html {
+    height:100%
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin:0;
+    
+}
+main {
+    flex:1 0 auto;
 }
