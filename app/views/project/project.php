@@ -8,7 +8,8 @@ if (!$entry_id) {
 }
 
 require_once __DIR__ . '/../../models/portfolio_model.php';
-$entry = get_portfolio_entry_by_id($pdo,$entry_id);
+$entry = getPortfolioEntryById($pdo,$entry_id);
+$gallery_images = getPortfolioMedia($pdo, $entry_id);
 
 if (!$entry) {
     header('location: ' . BASE_URL . '/?page=homepage');
@@ -27,5 +28,13 @@ if (!$entry) {
 
             <h1> <?=htmlspecialchars($entry['title'])?></h1>
             <p><?=htmlspecialchars($entry['description'])?></p>
+        
+            <?php if (!empty($gallery_images)): ?>
+            <div class="project-gallery">
+                <?php foreach ($gallery_images as $image_url):?>
+                    <img src="<?=htmlspecialchars($image_url)?>" alt="<?=htmlspecialchars($entry['title']) ?> screenshot" class="project-gallery-image">
+                    <?php endforeach;?>
+            </div>
+            <?php endif;?>
     </div>
 </section>

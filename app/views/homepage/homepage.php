@@ -1,8 +1,10 @@
 <?php
 require_once __DIR__ . '/../../models/portfolio_model.php';
-$portfolio_entries = get_portfolio_entries($pdo);
+$portfolio_entries = getPortfolioEntries($pdo);
 require_once __DIR__ . '/../../models/testimonial_model.php';
 $featured_testimonial = getFeaturedTestimonial($pdo);
+require_once __DIR__ .'/../../models/site_content_model.php';
+$site_content = getSiteContent($pdo);
 ?>
 
 <body>
@@ -13,29 +15,28 @@ $featured_testimonial = getFeaturedTestimonial($pdo);
     <div class="homepage-hero-body">
         <h1>RB Digital Solutions</h1>
         <p class="tagline">Professional Web Development Services</p>
+        <p class="availability-bubble <?=$site_content['is_available'] ? 'available' : 'unavailable' ?>">
+            <?php if ($site_content['is_available']): ?>
+                <em>Currently taking new clients, <a href="#contact">enquire now</a></em>
+            <?php else:?>
+                <em>Not currently taking new clients</em>
+                <?php endif;?>
+        </p>
        
     </div>
 
 </section>
 <section class="two-col-section">
-    <div class="Experience">
+    <div class="Services">
         <h2>Experience</h2>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Suspendisse tristique quis elit quis pharetra. 
-            Integer pharetra volutpat tellus eget iaculis. 
-            Nullam id est eget magna ornare fringilla elementum a sapien. 
-            Cras convallis, tellus eu fringilla hendrerit, nibh nunc consequat mi, ultricies tincidunt massa dolor ac arcu. 
+            <?= nl2br(htmlspecialchars($site_content['experience_text'])) ?>
         </p>
     </div>
     <div class="Skills">
         <h2> Skills </h2>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Suspendisse tristique quis elit quis pharetra. 
-            Integer pharetra volutpat tellus eget iaculis. 
-            Nullam id est eget magna ornare fringilla elementum a sapien. 
-            Cras convallis, tellus eu fringilla hendrerit, nibh nunc consequat mi, ultricies tincidunt massa dolor ac arcu. 
+            <?= nl2br(htmlspecialchars($site_content['skills_text'])) ?> 
         </p>
     </div>
 
@@ -76,7 +77,7 @@ $featured_testimonial = getFeaturedTestimonial($pdo);
     <section class="testimonial-featured">
         <div class="container">
             <p class="testimonial-quote">"<?= htmlspecialchars($featured_testimonial['content']) ?>"</p>
-            <p class="testimonial-name">— <?= htmlspecialchars($featured_testimonial['full_name']) ?></p>
+            <p class="testimonial-name">— <?= htmlspecialchars($featured_testimonial['author_name']) ?></p>
         </div>
     </section>
 <?php endif;?>

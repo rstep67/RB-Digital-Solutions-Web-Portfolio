@@ -49,6 +49,34 @@ body, button {
     margin: auto;
 }
 
+/*availability bubble*/
+.availability-bubble {
+    display: table;
+    padding:10px;
+    /*padding: 0.4rem 1 rem;*/
+    border-radius: 500px;
+    font-size: 0.9rem;
+    margin: 0.5rem auto 0;
+   
+}
+
+.availability-bubble.available {
+    background-color: #98BF64;
+    color:whitesmoke;
+}
+
+.availability-bubble.unavailable {
+    background-color: #F5F0E6;
+    color:#607D3B;
+}
+.availability-bubble a {
+    font-weight: bold;
+    text-decoration: underline;
+    color: inherit;
+}
+
+
+
 /*two column experience/skills section*/
 .two-col-section {
     display: grid;
@@ -65,7 +93,9 @@ body, button {
 
 /*Projects section*/
 .projects-section {
-    padding: 3rem 0;
+    margin-left:20px;
+    margin-right:20px;
+   padding: 3rem 0;
 }
 
 .projects-section h2 {
@@ -113,6 +143,30 @@ body, button {
     position:relative;
     color: white;
     font-weight: bold;
+}
+
+/*project gallery willdaywm only*/
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(autofit, minmax(200px,1fr));
+    gap:1rem;
+    margin-top:1.5rem;
+}
+
+.project-gallery-image {
+    width: 100%;
+    height: auto;
+    object-fit:cover;
+    border-radius: 10px;
+}
+/*project general*/
+.project-detail-image {
+    width: 100%;
+    max-width:100%;
+    height:auto;
+    display: block;
+    border-radius:10px;
+    margin: 4rem 0;
 }
 
 /*contact form*/
@@ -244,6 +298,7 @@ body, button {
     background-color: #FEEBE7;
     max-width: 100%;
     margin-top: 100px;
+    
 
 }
 
@@ -266,6 +321,7 @@ body, button {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    
 }
 
 .post-grid{

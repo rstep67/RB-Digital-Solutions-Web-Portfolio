@@ -1,4 +1,5 @@
 <?php
+$site_content = getSiteContent($pdo);
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('location: ' . BASE_URL . '/?page=login');
     exit;
@@ -49,11 +50,11 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         require_once __DIR__ . '/../../models/user_model.php';
         require_once __DIR__ . '/../../models/testimonial_model.php';
 
-        $all_clients = get_all_clients($pdo);
+        $all_clients = getAllClients($pdo);
 
         $selected_client = null;
         if (!empty($_GET['client_id'])) {
-            $selected_client = get_client_by_id($pdo, (int) $_GET['client_id']);
+            $selected_client = getClientById($pdo, (int) $_GET['client_id']);
         }
         $show_manage_messages = !empty($_SESSION['manage_client_errors']) || !empty($_SESSION['manage_client_success']) || !empty($selected_client);
 
@@ -120,11 +121,15 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
                     <input type="submit" value="Update client">
 
                 </form>
+                <!--delete client controller-->
                 <form action="<?= BASE_URL ?>/?page=delete_client_controller" method="post"
                     onsubmit="return confirm('delete this client account? This cannot be undone.');">
                     <input type="hidden" name="client_id" value="<?= (int) $selected_client['id'] ?>">
                     <input type="submit" value="Delete client" class="btn-danger">
                 </form>
+
+                
+
             <?php endif; ?>
         </details>
         <?php
@@ -252,28 +257,72 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
                 <div class="testimonial-admin-row">
                     <p>
                         <strong>
-                            <?= htmlspecialchars($testimonial['full_name']) ?>
+                            <?= htmlspecialchars($testimonial['author_name']) ?>
                         </strong>: <?= htmlspecialchars($testimonial['content']) ?>
 
                     </p>
 
-                    <form action="<?= BASE_URL ?> /?page=toggle_testimonial_controller" method="post">
-                        <input type="hidden" name="testimonial_id" value="<? htmlspecialchars($testimonial['id']) ?>">
-                        <input type="hidden" name="toggle_field" value="is_visible">
-                        <input type="submit" value="<?= $testimonial['is_visible'] ? 'hide' : 'show' ?>">
+                    
 
-                    </form>
-
-                    <form action="<?= BASE_URL ?> /?page=toggle_testimonial_controller" method="post">
+                    <form action="<?= BASE_URL ?>/?page=toggle_testimonial_controller" method="post">
                         <input type="hidden" name="testimonial_id" value="<?= htmlspecialchars($testimonial['id']) ?>">
                         <input type="hidden" name="toggle_field" value="is_featured">
-                        <input type="submit" value="<?= $testimonial['is_featured'] ? 'unfeatured' : 'featured' ?>">
+                        <input type="submit" value="<?= $testimonial['is_featured'] ? 'Unfeature' : 'Featured' ?>">
 
                         </input>
                     </form>
                 </div>
             <?php endforeach; ?>
         </details>
+
+        <!--ADD NEW TESTIMONIAL-->
+        <Details class="admin-accordion">
+            <summary>Add new testimonial </summary>
+            <?php if(!empty($_SESSION['testimonial_errors'])): ?>
+                <ul class="flash-errors">
+                    <?php foreach ($_SESSION['testimonial_errors'] as $msg): ?>
+                        <li><?= htmlspecialchars($msg)?></li>
+                    <?php endforeach;?>
+
+                </ul>
+
+                <?php unset($_SESSION['testimonial_errors']);?>
+            <?php endif;?>
+
+            <?php if (!empty($_SESSION['testimonial_success'])):?>
+                <p class="flash-success"><?=htmlspecialchars($_SESSION['testimonial_success'])?></p>
+                <?php unset($_SESSION['testimonial_success']); ?>
+            <?php endif;?>
+
+            <form action="<?= BASE_URL?>/?page=new_testimonial_controller" method="post">
+                <label for="author_name">Client name</label>
+                <input type="text" id="author_name" name="author_name" required>
+
+                <label for="content">Testimonial</label>
+                <textarea id="content" name="content" rows="4" required></textarea>
+                <button type="submit">Add testimonial</button>
+            </form>
+        </Details>
+
+        <!--change site content-->
+        <details class="admin-accordion">
+            <summary>Site Content</summary>
+            <form action="<?=BASE_URL?>/?page=update_site_content" method="POST">
+                <label for="experience_text">Experience</label>
+                <textarea name="experience_text" id="experience_text" rows="5"><?=htmlspecialchars($site_content['experience_text'])?></textarea>
+
+                <label for="skills_text">Skills</label>
+                <textarea name="skills_text" id="skills_text" rows="5"><?=htmlspecialchars($site_content['skills_text'])?></textarea>
+
+                <label >
+                    <input type="checkbox" name="is_available" <?=$site_content['is_available'] ? 'checked' : '' ?>>
+                    Currently taking new clients 
+                </label>
+
+                <button type="submit">Save changes</button>
+            </form>
+        </details>
+
 
 
 

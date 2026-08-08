@@ -65,7 +65,7 @@ if ($page === 'download_document') {
 $pagetitles = [
     'login' => 'Login',
     'change_pw' => 'Change password',
-    'dahsboard' => 'Dashboard',
+    'dashboard' => 'Dashboard',
     'admin_dashboard' => 'Admin dashboard',
     'homepage' => 'Home',
     'project' => 'Project Details'
@@ -105,6 +105,7 @@ switch ($page) {
         break;
 
     case 'admin_dashboard':
+        require __DIR__ .'/app/models/site_content_model.php';
         require __DIR__ .'/app/views/admin_dashboard/admin_dashboard.php';
         break;
 
@@ -119,6 +120,14 @@ switch ($page) {
     case 'logout':
         require_once 'app/controllers/logout_controller.php';
         break;
+
+    case 'new_testimonial_controller': 
+        require_once 'app/controllers/new_testimonial_controller.php';
+        break;
+
+    case 'update_site_content':
+    require_once 'app/controllers/site_content_controller.php';
+    break;
 
         
 

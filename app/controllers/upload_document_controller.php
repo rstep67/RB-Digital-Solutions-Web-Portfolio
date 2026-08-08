@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
     }
     if (!empty($errors)) {
-        $_SESSION['document_errors'] = $error;
+        $_SESSION['document_errors'] = $errors;
     }
 
 }

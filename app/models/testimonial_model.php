@@ -2,7 +2,7 @@
 
 //returns only featured testimonial on homepage
 function getFeaturedTestimonial($pdo) {
-    $stmt = $pdo ->prepare("SELECT t.content, u.full_name FROM testimonials t JOIN users u ON t.user_id=u.id WHERE t.is_visible = 1 AND t.is_featured = 1 LIMIT 1");
+    $stmt = $pdo ->prepare("SELECT content, author_name FROM testimonials WHERE is_featured = 1 LIMIT 1");
     $stmt ->execute();
     return $stmt ->fetch();
 
@@ -11,21 +11,40 @@ function getFeaturedTestimonial($pdo) {
 //returns every testimonial for featured and visible management 
 function getAllTestimonials($pdo) 
 {
-    $stmt = $pdo ->prepare("SELECT t.id, t.content, t.is_visible, t.is_featured, u.full_name FROM testimonials t JOIN users u ON t.user_id = u.id ORDER BY t.created_at DESC");
+    $stmt = $pdo ->prepare("SELECT id, content, author_name, is_featured FROM testimonials ORDER BY created_at DESC");
     $stmt ->execute();
     return $stmt->fetchAll();
 
 }
 
+//developer manually add new testimonial 
+function createTestimonial($pdo, $author_name, $content) {
+    $stmt = $pdo ->prepare("INSERT INTO testimonials (author_name, content, is_featured) VALUES (?,?,0,0)");
+    $stmt ->Execute([$author_name, $content]);
+}
+
 //changes is_visible on single testimonial 
-function toggleTestimonialVisible($pdo, $testimonial_id) {
+/*function toggleTestimonialVisible($pdo, $testimonial_id) {
     $stmt = $pdo->prepare("UPDATE testimonials SET is_visible = NOT is_visible WHERE id = ?");
     $stmt ->execute([$testimonial_id]);
-}
+}*/
 
 //changes is_featured on single testimonial 
 
 function toggleTestimonialFeatured($pdo,$testimonial_id) {
-    $stmt = $pdo->prepare("UPDATE testimonials SET is_featured = NOT is_featured WHERE id = ?");
-    $stmt ->execute([$testimonial_id]);
+    $check = $pdo->prepare("SELECT is_featured FROM testimonials WHERE id = ?");
+    $check ->execute([$testimonial_id]);
+    $current = $check ->fetchColumn();
+
+    $pdo ->beginTransaction();
+    try {
+        //unset other featured testimonial first
+        $pdo ->preapre("UPDATE testimonials SET is_feartured = 0 WHERE id !=?")->execute([$testimonial_id]);
+        $pdo ->prepare("UPDATE testimonials SET is_featured = ? WHERE id = ?")->execute([$current ? 0 : 1, $testimonial_id]);
+        $pdo->commit();
+    }
+    catch(PDOException $e) {
+        $pdo ->rollBack();
+        throw $e;
+    }
 }
