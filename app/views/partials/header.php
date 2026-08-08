@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width", initial-scale="1.0">
+        <meta name="viewport" content="width=device-width" initial-scale="1.0">
         
         <!--google fonts-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,8 +25,8 @@
                 <nav class="site-nav">
                     <ul>
                         
-                            <li><a href="http://localhost/Web-Portfolio/?page=homepage">Home</a> </li>
-                            <li><a href="http://localhost/Web-Portfolio/?page=homepage#contact"> Contact </a></li>
+                            <li><a href="<?= BASE_URL ?>/?page=homepage">Home</a> </li>
+                            <li><a href="<?= BASE_URL ?>/?page=homepage#contact"> Contact </a></li>
                             <?php if (isset($_SESSION['role'])): ?>
                                 <?php if ($_SESSION['role'] === 'admin'):?>
                                 <li><a href="<?= BASE_URL?>/?page=admin_dashboard">Dashboard</a></li>

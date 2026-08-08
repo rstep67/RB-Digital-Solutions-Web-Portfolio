@@ -19,7 +19,7 @@ function getAllTestimonials($pdo)
 
 //developer manually add new testimonial 
 function createTestimonial($pdo, $author_name, $content) {
-    $stmt = $pdo ->prepare("INSERT INTO testimonials (author_name, content, is_featured) VALUES (?,?,0,0)");
+    $stmt = $pdo ->prepare("INSERT INTO testimonials (author_name, content, is_featured) VALUES (?,?,0)");
     $stmt ->Execute([$author_name, $content]);
 }
 
@@ -39,7 +39,7 @@ function toggleTestimonialFeatured($pdo,$testimonial_id) {
     $pdo ->beginTransaction();
     try {
         //unset other featured testimonial first
-        $pdo ->preapre("UPDATE testimonials SET is_feartured = 0 WHERE id !=?")->execute([$testimonial_id]);
+        $pdo ->preapre("UPDATE testimonials SET is_featured = 0 WHERE id !=?")->execute([$testimonial_id]);
         $pdo ->prepare("UPDATE testimonials SET is_featured = ? WHERE id = ?")->execute([$current ? 0 : 1, $testimonial_id]);
         $pdo->commit();
     }

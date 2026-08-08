@@ -30,7 +30,8 @@ $my_projects = $stmt->fetchAll();
                     <?php $project_documents = getDocumentsByProjectID($pdo, $project['id']); ?>
                     <details class="client-project-accordion">
                         <summary><?= htmlspecialchars($project['title']) ?>         
-                        <span class="project-status-badge"><?= htmlspecialchars($project['status']) ?>
+                        <span class="project-status-badge"><?= htmlspecialchars($project['status']) ?></span>
+                        
                         </summary>
                         <p style="white-space: pre-line;"><?= htmlspecialchars($project['description']) ?></p>
                         <p><small>last updated at: <?= htmlspecialchars($project['updated_at']) ?></small></p>

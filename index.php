@@ -54,6 +54,10 @@ else if ($page === 'toggle_testimonial_controller') {
     require __DIR__ . '/app/controllers/toggle_testimonial_controller.php';
 }
 
+else if ($page === 'manage_project_controller' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require __DIR__ . '/app/controllers/manage_project_controller.php';
+}
+
 if ($page === 'download_document') {
     require __DIR__ . '/app/controllers/download_document_controller.php';
     exit; 

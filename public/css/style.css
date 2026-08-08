@@ -9,6 +9,10 @@ body, button {
     
 }
 
+h1, h2, h3, h4, p {
+    margin: 15px 15px;
+}
+
 /*HOMEPAGE*/
 /*hero*/
 .homepage-hero {
@@ -36,6 +40,7 @@ body, button {
     margin: 0px;
 }
 
+
 .homepage-hero p {
     text-align: center;
     font-size: 1rem;
@@ -61,18 +66,24 @@ body, button {
 }
 
 .availability-bubble.available {
-    background-color: #98BF64;
+    background-color: #4f6e28;
     color:whitesmoke;
 }
 
 .availability-bubble.unavailable {
     background-color: #F5F0E6;
-    color:#607D3B;
+    color:#4f6e28;
 }
 .availability-bubble a {
     font-weight: bold;
     text-decoration: underline;
     color: inherit;
+}
+
+h2 {
+    margin: 15px;
+    font-size: 2rem;
+
 }
 
 
@@ -177,6 +188,7 @@ body, button {
     min-height: 70vh;
     padding: 20px;
     
+    
 
 }
 .contact-form-section .container {
@@ -186,6 +198,7 @@ body, button {
     padding: 50px;
     border-radius: 15px;
     margin: 0 auto;
+    box-shadow: 2px 2px 10px 5px rgba(0,0,0,0.1)
 }
 
 .contact-form-section label {
@@ -298,6 +311,8 @@ body, button {
     background-color: #FEEBE7;
     max-width: 100%;
     margin-top: 100px;
+    margin-bottom: 150px;
+    box-shadow: 2px 2px 10px 5px rgba(0,0,0,0.2);
     
 
 }
@@ -321,6 +336,8 @@ body, button {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin: 50px 20px;
+    
     
 }
 

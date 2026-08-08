@@ -30,10 +30,10 @@ unset($_SESSION['old_login_email']);
         <div class="container">
             <div class="user-login-area">
                 <label for="email">Email</label>
-                <input type="text" placeholder="Enter Email" name="email" required>
+                <input type="text" id="email" placeholder="Enter Email" name="email" required>
 
                 <label for="password">Password</label>
-                <input type="password" placeholder="enter password" name="password" required>
+                <input type="password" id="password" placeholder="enter password" name="password" required>
         
                 <button type="submit">Login</button>
                     

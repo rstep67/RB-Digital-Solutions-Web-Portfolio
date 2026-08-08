@@ -43,11 +43,11 @@ if (empty($errors)) {
     try {
         $stmt = $pdo->prepare("INSERT INTO projects (user_id, title, description, status) VALUES(?,?,?,?)");
         $stmt ->execute([$user_id, $title, $description, $status]);
-        $SESSION['flash_success'] = 'project "'.$title. '" created and assigned successfully';
+        $_SESSION['flash_success'] = 'project "'.$title. '" created and assigned successfully';
 
     }
     catch (PDOException $e) {
-        $SESSION['flash_error'] = 'Database error: ' . $e ->getMessage();
+        $_SESSION['flash_error'] = 'Database error: ' . $e ->getMessage();
         
     }
     

@@ -6,7 +6,7 @@ $toggle_field = $_POST['toggle_field'] ?? '';
 
 
 //whitelist dweatured only to be edited
-if ($testimonial_id && $toggle_fiels === 'is_featured') {
+if ($testimonial_id && $toggle_field === 'is_featured') {
     toggleTestimonialFeatured($pdo,$testimonial_id);
 }
 
