@@ -12,13 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $is_available = isset($_POST['is_available']) ? 1 : 0;
 
     if ($experience_text === '' || $skills_text === '') {
-        $_SESSION['errors'] = ['experience and skills fields cannot be empty'];
+        $_SESSION['site_content_errors'] = ['experience and skills fields cannot be empty'];
         header('location: '.BASE_URL. '/?page=admin_dashboard');
         exit;
     }
 
     updateSiteContent($pdo, $experience_text, $skills_text, $is_available);
-    $_SESSION['success'] = 'site content updated';
+    $_SESSION['site_content_success'] = 'site content updated';
     header('Location: ' . BASE_URL . '/?page=admin_dashboard');
     exit;
 

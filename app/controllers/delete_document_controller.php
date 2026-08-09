@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
         $errors[] = 'no document selected';
     }
     else {
-        $check = $pdo->prepare('SELECT file_path FROM DOCUMENTS WHERE id=?');
+        $check = $pdo->prepare('SELECT file_path FROM documents WHERE id=?');
         $check ->execute([$document_id]);
         $document = $check->fetch();
 
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
                 unlink($file_path);
             }
 
-            $_SESSION['document_success'] = 'Document deleted successfully';
+            $_SESSION['document_delete_success'] = 'Document deleted successfully';
         }
 
         catch (PDOException $e) {
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
     }
 
     if(!empty($errors)) {
-        $_SESSION['document_errors'] = $errors;
+        $_SESSION['document_delete_errors'] = $errors;
     }
 }
 

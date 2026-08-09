@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !=='admin') {
-    header('location: ' . __DIR__ . '/?page=admin_dashboard');
+    header('location: ' . BASE_URL . '/?page=admin_dashboard');
     exit;
 }
 

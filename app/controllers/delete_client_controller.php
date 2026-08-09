@@ -8,7 +8,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 }
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $client_id = filter_input(INPUT_POST,'user_id', FILTER_VALIDATE_INT);
+    $client_id = filter_input(INPUT_POST,'client_id', FILTER_VALIDATE_INT);
 
     if(empty($client_id)) {
         $error[] = 'no client selected';
@@ -33,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 }
                 else {
-                    $stmt = $pdo->prepare('DELETE DROM users WHERE id= ? AND role = ?');
+                    $stmt = $pdo->prepare('DELETE FROM users WHERE id= ? AND role = ?');
                     $stmt->execute([$client_id,'client']);
                     $_SESSION['manage_client_success'] = 'client account deleted';
 
@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             
         }
     }
-    if (empty($error)) {
+    if (!empty($error)) {
         $_SESSION['manage_client_errors'] = $error;
     }
 }

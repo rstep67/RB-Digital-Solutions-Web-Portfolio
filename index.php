@@ -62,6 +62,10 @@ if ($page === 'download_document') {
     require __DIR__ . '/app/controllers/download_document_controller.php';
     exit; 
 }
+
+else if ($page === 'delete_document_controller' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require __DIR__ . '/app/controllers/delete_document_controller.php';
+}
     
     
 //pagetitle array before header.php to ensure page name can bedisplayed

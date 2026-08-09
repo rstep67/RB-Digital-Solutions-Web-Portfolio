@@ -14,27 +14,26 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             (Admin)
         </p>
 
-        <?php
-
-        if (!empty($_SESSION['client_errors'])) {
-            echo "<ul class='form-errors'>";
-            foreach ($_SESSION['client_errors'] as $msg) {
-                echo "<li>" . htmlspecialchars($msg) . "</li>";
-            }
-            echo "</ul>";
-            unset($_SESSION['client_errors']);
-        }
-
-        if (!empty($_SESSION['client_success'])) {
-            echo "<p class='form-success'>" . htmlspecialchars($_SESSION['client_success']) . "</p>";
-            unset($_SESSION['client_success']);
-        }
-        ?>
         <!--ADD NEW CLIENT-->
-        <?php $show_new_client_messages = !empty($_SESSION['client_errors']) || !empty($_SESSION['client_success']);
-        ?>
+        <?php $show_new_client_messages = !empty($_SESSION['client_errors']) || !empty($_SESSION['client_success']); ?>
+
         <details class="a-dash-new-client admin-accordion" <?= $show_new_client_messages ? 'open' : '' ?>>
             <summary>Create new client account</summary>
+            <?php if (!empty($_SESSION['client_errors'])): ?>
+        <ul class="form-errors">
+            <?php foreach ($_SESSION['client_errors'] as $msg): ?>
+                <li><?= htmlspecialchars($msg) ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <?php unset($_SESSION['client_errors']); ?>
+    <?php endif; ?>
+
+    <?php if (!empty($_SESSION['client_success'])): ?>
+        <p class="form-success"><?= htmlspecialchars($_SESSION['client_success']) ?></p>
+        <?php unset($_SESSION['client_success']); ?>
+    <?php endif; ?>
+
+
             <form action="<?= BASE_URL ?>/?page=new_client_controller" method="post">
                 <label for="full_name"> Full name</label>
                 <input type="text" id="full_name" name="full_name" required>
@@ -51,6 +50,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         <?php
         require_once __DIR__ . '/../../models/user_model.php';
         require_once __DIR__ . '/../../models/testimonial_model.php';
+        require_once __DIR__ . '/../../models/document_model.php';
 
         $all_clients = getAllClients($pdo);
 
@@ -105,7 +105,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
             </form>
             <?php if ($selected_client): ?>
-                <form action="<?= BASE_URL ?>/?page=manage_client" method="post">
+                <form action="<?= BASE_URL ?>/?page=manage_client" method="post"
+    onsubmit="return confirm('Save these changes to the client account?');">
                     <input type="hidden" name="client_id" value="<?= (int) $selected_client['id'] ?>">
 
                     <label for="edit_full_name"> Full name</label>
@@ -143,34 +144,28 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         $projects = $pdo->query('SELECT projects.id, projects.title, users.full_name FROM projects 
     JOIN users ON projects.user_id = users.id ORDER BY title')->fetchAll();
 
+        $show_document_messages = !empty($_SESSION['document_success']) || !empty($_SESSION['document_errors']);
+        $show_new_project_messages = !empty($_SESSION['flash_success']) || !empty($_SESSION['flash_error']);
+
         ?>
-
-        <?php $show_document_messages = !empty($_SESSION['document_success']) || !empty($_SESSION['document_errors']); ?>
-
-
-        <?php if (!empty($_SESSION['document_success'])): ?>
-            <p class="flash-success"> <?= htmlspecialchars($_SESSION['document_success']) ?> </p>
-            <?php unset($_SESSION['document_success']); ?>
-        <?php endif; ?>
-
-
-
-        <?php if (!empty($_SESSION['document_errors'])): ?>
-            <ul class="flash-errors">
-                <?php foreach ($_SESSION['document_errors'] as $msg): ?>
-                    <li> <?= htmlspecialchars($msg) ?> </li>
-                <?php endforeach; ?>
-            </ul>
-            <?php unset($_SESSION['document_errors']); ?>
-        <?php endif; ?>
-
-
-        <?php $show_new_project_messages = !empty($_SESSION['flash_success']) || !empty($_SESSION['flash_error']); ?>
-
         <!-- CREATE NEW PROJECT-->
         <details class="admin-accordion" <?= $show_new_project_messages ? 'open' : '' ?>>
             <summary>Create New Project</summary>
-            <form method="post" action="<?= BASE_URL ?>/?page=new_project">
+
+            <?php if (!empty($_SESSION['flash_success'])): ?>
+                <p class="flash-success"><?= htmlspecialchars($_SESSION['flash_success']) ?></p>
+                <?php unset($_SESSION['flash_success']); ?>
+            <?php endif; ?>
+
+            <?php if (!empty($_SESSION['flash_error'])): ?>
+                <p class="flash-errors"><?= htmlspecialchars($_SESSION['flash_error']) ?></p>
+                <?php unset($_SESSION['flash_error']); ?>
+            <?php endif; ?>
+
+
+
+            <form action="<?= BASE_URL ?>/?page=new_project" method="post"
+    onsubmit="return confirm('Save these changes to the client account?');">
                 <label for="user_id">Assign to client</label>
                 <select name="user_id" id="user_id" required>
                     <option value="">Select client</option>
@@ -194,7 +189,16 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             </form>
         </details>
 
-        <?php if (!empty($_SESSION['manage_project_success'])): ?>
+        
+
+        <?php $show_delete_project_messages = !empty($_SESSION['manage_project_success']) || !empty($_SESSION['manage_project_errors']); ?>
+
+        <!-- DELETE PROJECT-->
+
+        <details class="admin-accordion" <?= $show_delete_project_messages ? 'open' : '' ?>>
+            <summary>Delete a project</summary>
+
+            <?php if (!empty($_SESSION['manage_project_success'])): ?>
             <p class="flash-success"> <?= htmlspecialchars($_SESSION['manage_project_success']) ?></p>
             <?php unset($_SESSION['manage_project_success']); ?>
         <?php endif; ?>
@@ -210,12 +214,6 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             <?php unset($_SESSION['manage_project_errors']); ?>
         <?php endif; ?>
 
-        <?php $show_delete_project_messages = !empty($_SESSION['manage_project_success']) || !empty($_SESSION['manage_project_errors']); ?>
-
-        <!-- DELETE PROJECT-->
-
-        <details class="admin-accordion" <?= $show_delete_project_messages ? 'open' : '' ?>>
-            <summary>Delete a project</summary>
             <form action="<?= BASE_URL ?>/?page=delete_project_controller" method="post"
                 onsubmit="return confirm('delete this project and associated documents');">
                 <label for="delete_project_id">Project</label>
@@ -274,7 +272,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             </form>
 
             <?php if ($selected_project): ?>
-                <form action="<?= BASE_URL ?>/?page=manage_project_controller" method="post">
+                <form action="<?= BASE_URL ?>/?page=manage_project_controller" method="post"
+                    onsubmit="return confirm('Save these changes to the project?');">
                     <input type="hidden" name="project_id" value="<?= (int) $selected_project['id'] ?>">
 
                     <label for="edit_title">Project title</label>
@@ -299,6 +298,20 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         <Details class="admin-accordion" <?= $show_document_messages ? 'open' : '' ?>>
 
             <summary>Upload project file</summary>
+            <?php if (!empty($_SESSION['document_success'])): ?>
+                <p class="flash-success"> <?= htmlspecialchars($_SESSION['document_success']) ?> </p>
+                <?php unset($_SESSION['document_success']); ?>
+            <?php endif; ?>
+
+            <?php if (!empty($_SESSION['document_errors'])): ?>
+                <ul class="flash-errors">
+                    <?php foreach ($_SESSION['document_errors'] as $msg): ?>
+                        <li> <?= htmlspecialchars($msg) ?> </li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php unset($_SESSION['document_errors']); ?>
+            <?php endif; ?>
+
             <form method="post" action="<?= BASE_URL ?>/?page=upload_document" enctype="multipart/form-data">
                 <label for="project_id">Project</label>
                 <select name="project_id" id="project_id" required>
@@ -321,11 +334,66 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
         </Details>
 
-        <?php $show_testimonial_messages = !empty($_SESSION['testimonial_success']) || !empty($_SESSION['testimonial_errors']); ?>
+        
+ 
+        <?php $show_delete_document_messages = !empty($_SESSION['document_delete_success']) || !empty($_SESSION['document_delete_errors']); ?>
 
+        <!--DELETE PROJECT FILE-->
+        <details class="admin-accordion" <?= $show_delete_document_messages ? 'open' : '' ?>>
+            <summary>Delete project file</summary>
+
+            <?php if (!empty($_SESSION['document_delete_success'])): ?>
+                <p class="flash-success"><?= htmlspecialchars($_SESSION['document_delete_success']) ?></p>
+                <?php unset($_SESSION['document_delete_success']); ?>
+            <?php endif; ?>
+
+            <?php if (!empty($_SESSION['document_delete_errors'])): ?>
+                <ul class="flash-errors">
+                    <?php foreach ($_SESSION['document_delete_errors'] as $msg): ?>
+                        <li><?= htmlspecialchars($msg) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php unset($_SESSION['document_delete_errors']); ?>
+            <?php endif; ?>
+
+            <?php $all_documents = getAllDocumentsWithProject($pdo); ?>
+            <form action="<?= BASE_URL ?>/?page=delete_document_controller" method="post"
+                onsubmit="return confirm('Delete this file? This cannot be undone.');">
+                <label for="delete_document_id">File</label>
+                <select name="document_id" id="delete_document_id" required>
+                    <option value="">Select file</option>
+                    <?php foreach ($all_documents as $document): ?>
+                        <option value="<?= (int) $document['id'] ?>">
+                            <?= htmlspecialchars($document['file_name']) ?> — <?= htmlspecialchars($document['project_title']) ?> (<?= htmlspecialchars($document['full_name']) ?>)
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <input type="submit" value="Delete file" class="btn-warning">
+            </form>
+        </details>
+
+         
+
+        <?php $show_manage_testimonials_messages = !empty($_SESSION['manage_testimonials_success']) || !empty($_SESSION['manage_testimonials_errors']); ?>
+        <?php $show_add_testimonial_messages = !empty($_SESSION['testimonial_success']) || !empty($_SESSION['testimonial_errors']); ?>
         <!--MANAGE TESTIMONIALS-->
-        <details class="admin-accordion" <?= $show_testimonial_messages ? 'open' : '' ?>>
+        <details class="admin-accordion" <?= $show_manage_testimonial_messages ? 'open' : '' ?>>
             <summary>Manage Testimonials</summary>
+
+            <?php if (!empty($_SESSION['manage_testimonials_success'])): ?>
+                <p class="flash-success"><?= htmlspecialchars($_SESSION['manage_testimonials_success']) ?></p>
+                <?php unset($_SESSION['manage_testimonials_success']); ?>
+            <?php endif; ?>
+
+            <?php if (!empty($_SESSION['manage_testimonials_errors'])): ?>
+                <ul class="flash-errors">
+                    <?php foreach ($_SESSION['manage_testimonials_errors'] as $msg): ?>
+                        <li><?= htmlspecialchars($msg) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php unset($_SESSION['manage_testimonials_errors']); ?>
+            <?php endif; ?>
+
             <?php $testimonials = getAllTestimonials($pdo); ?>
             <?php foreach ($testimonials as $testimonial): ?>
                 <div class="testimonial-admin-row">
@@ -350,7 +418,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         </details>
 
         <!--ADD NEW TESTIMONIAL-->
-        <Details class="admin-accordion" <?= $show_testimonial_messages ? 'open' : '' ?>>
+        <Details class="admin-accordion" <?= $show_add_testimonial_messages ? 'open' : '' ?>>
             <summary>Add new testimonial </summary>
             <?php if (!empty($_SESSION['testimonial_errors'])): ?>
                 <ul class="flash-errors">
@@ -379,11 +447,28 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         </Details>
 
 
-        <?php $show_site_content_messages = !empty($_SESSION['errors']) || !empty($_SESSION['success']); ?>
+        <?php $show_site_content_messages = !empty($_SESSION['site_content_errors']) || !empty($_SESSION['success']); ?>
         <!--change site content-->
+
+        <?php if (!empty($_SESSION['site_content_errors'])): ?>
+                <ul class="flash-errors">
+                    <?php foreach ($_SESSION['site_content_errors'] as $msg): ?>
+                        <li><?= htmlspecialchars($msg) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php unset($_SESSION['site_content_errors']); ?>
+            <?php endif; ?>
+
+            <?php if (!empty($_SESSION['site_content_success'])): ?>
+                <p class="flash-success"><?= htmlspecialchars($_SESSION['site_content_success']) ?></p>
+                <?php unset($_SESSION['site_content_success']); ?>
+            <?php endif; ?>
+
         <details class="admin-accordion" <?= $show_site_content_messages ? 'open' : '' ?>>
             <summary>Site Content</summary>
-            <form action="<?= BASE_URL ?>/?page=update_site_content" method="POST">
+
+            <form action="<?= BASE_URL ?>/?page=update_site_content" method="POST"
+                onsubmit="return confirm('Save changes to site content?');">
                 <label for="experience_text">Experience</label>
                 <textarea name="experience_text" id="experience_text"
                     rows="5"><?= htmlspecialchars($site_content['experience_text']) ?></textarea>

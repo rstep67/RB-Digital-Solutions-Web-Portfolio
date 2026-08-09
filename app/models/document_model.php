@@ -12,3 +12,15 @@ function getDocumentsByProjectID($pdo, $project_id) {
     $stmt ->execute([$project_id]);
     return $stmt ->fetchAll();
 }
+
+//delete documents - returns all documents with project title and client name
+function getAllDocumentsWithProject($pdo) {
+    $stmt = $pdo ->prepare('SELECT documents.id, documents.file_name, documents.uploaded_at, projects.title AS project_title, users.full_name
+        FROM documents
+        
+        JOIN projects ON documents.project_id = projects.id
+        JOIN users ON projects.user_id = users.id
+        ORDER BY documents.uploaded_at DESC');
+    $stmt ->execute();
+    return $stmt ->fetchAll();
+}

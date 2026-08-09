@@ -39,7 +39,7 @@ function toggleTestimonialFeatured($pdo,$testimonial_id) {
     $pdo ->beginTransaction();
     try {
         //unset other featured testimonial first
-        $pdo ->preapre("UPDATE testimonials SET is_featured = 0 WHERE id !=?")->execute([$testimonial_id]);
+        $pdo ->prepare("UPDATE testimonials SET is_featured = 0 WHERE id !=?")->execute([$testimonial_id]);
         $pdo ->prepare("UPDATE testimonials SET is_featured = ? WHERE id = ?")->execute([$current ? 0 : 1, $testimonial_id]);
         $pdo->commit();
     }
