@@ -377,7 +377,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         <?php $show_manage_testimonials_messages = !empty($_SESSION['manage_testimonials_success']) || !empty($_SESSION['manage_testimonials_errors']); ?>
         <?php $show_add_testimonial_messages = !empty($_SESSION['testimonial_success']) || !empty($_SESSION['testimonial_errors']); ?>
         <!--MANAGE TESTIMONIALS-->
-        <details class="admin-accordion" <?= $show_manage_testimonial_messages ? 'open' : '' ?>>
+        <details class="admin-accordion" <?= $show_manage_testimonials_messages ? 'open' : '' ?>>
             <summary>Manage Testimonials</summary>
 
             <?php if (!empty($_SESSION['manage_testimonials_success'])): ?>

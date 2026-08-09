@@ -23,11 +23,6 @@ function createTestimonial($pdo, $author_name, $content) {
     $stmt ->Execute([$author_name, $content]);
 }
 
-//changes is_visible on single testimonial 
-/*function toggleTestimonialVisible($pdo, $testimonial_id) {
-    $stmt = $pdo->prepare("UPDATE testimonials SET is_visible = NOT is_visible WHERE id = ?");
-    $stmt ->execute([$testimonial_id]);
-}*/
 
 //changes is_featured on single testimonial 
 

@@ -27,11 +27,11 @@ CREATE TABLE projects (
 -- Testimonials
 CREATE TABLE testimonials (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
     content TEXT NOT NULL,
-    is_visible BOOLEAN NOT NULL DEFAULT FALSE,
+    is_featured BOOLEAN NOT NULL DEFAULT FALSE,
+    author_name VARCHAR(100) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+
     );
     
 -- Documents
@@ -62,7 +62,33 @@ CREATE TABLE contact_submissions (
     message TEXT NOT NULL,
     submitted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
+
     
+    
+-- Auto contact submission clean up
+-- Based off 
+--Dhandala, N. (2026) How to Schedule Data Cleanup Jobs with MySQL Events. OneUptime Blog. 
+--Available at: https://oneuptime.com/blog/post/2026-03-31-mysql-schedule-data-cleanup-events/view (Accessed: 9 August 2026)
+
+DELIMITER $$
+
+CREATE EVENT IF NOT EXISTS delete_old_contact_submissions
+ON SCHEDULE EVERY 1 DAY
+STARTS CURRENT_TIMESTAMP
+DO
+BEGIN
+
+DELETE FROM contact_submissions
+WHERE submitted_at < (NOW() - INTERVAL 90 DAY);
+END $$
+
+
+
+
+
+
+
+CREATE ELEME
 -- Creating admin account
 -- DONT push to git with real details!
 -- INSERT INTO users (full_name, email, password_hash, role, password_changed)

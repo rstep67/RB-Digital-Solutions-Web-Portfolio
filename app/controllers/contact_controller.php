@@ -45,6 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error[] = 'Subject is blank';
     }
 
+    if (empty($message)) {
+        $error[]='Message is blank';
+    }
+
     if (empty($_POST['privacy_policy_agreed'])) {
         $error[] = 'Confirm privacy policy';
     }
