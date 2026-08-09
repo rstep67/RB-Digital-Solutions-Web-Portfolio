@@ -52,7 +52,7 @@ $site_content = getSiteContent($pdo);
                 <div class="projects-list">
                     <?php foreach ($portfolio_entries as $entry): ?>
                         <a class="project-row" href="<?=BASE_URL?>/?page=project&id=<?=(int) $entry['id'] ?>"
-                            <?php if (!empty($entry['media_url'])): ?>style="background-image: url('<?=htmlspecialchars($entry['media_url']) ?>');"
+                            <?php if (!empty($entry['media_url'])): ?> aria-label="picture of correlating project"style="background-image: url('<?=htmlspecialchars($entry['media_url']) ?>');"
                             <?php endif; ?>>
                             <div class="project-row-overlay">
 
@@ -86,7 +86,7 @@ $site_content = getSiteContent($pdo);
 
 <section class="latest_posts">
     <div class="container">
-        <h2>Latest blog posts from willdaywm.co.uk</h2>
+        <h2>Recreation of a carousel I built for willdaywm.co.uk</h2>
 
         <?php if (!empty($latest_posts)): ?>
             <div class="carousel-wrapper">

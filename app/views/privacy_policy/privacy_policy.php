@@ -42,7 +42,7 @@ Where we get personal information from
 •	Directly from you
 How long we keep information
 Contact form submissions, including the sender's name, email address, and message content, are retained for a minimum of 90 days from the date of submission. This period allows sufficient time to respond to and follow up on enquiries while limiting how long personal data is held beyond its original purpose.
-Client account data, including name, email address, and hashed password, is retained for the duration of the client relationship. Where an account is deactivated by the developer, associated project and document records are also deactivated and removed. 
+Client account data, including name, email address, and hashed password, is retained for the duration of the client relationship. Where an account is deactivated by the developer, associated project and document records are retained until client account deletion.
 For more information on how long we store your personal information or the criteria we use to determine this please contact us using the details provided above.
 
 Sharing information outside the UK

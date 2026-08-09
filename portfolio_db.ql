@@ -30,7 +30,7 @@ CREATE TABLE testimonials (
     content TEXT NOT NULL,
     is_featured BOOLEAN NOT NULL DEFAULT FALSE,
     author_name VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 
     );
     
@@ -63,6 +63,17 @@ CREATE TABLE contact_submissions (
     submitted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
 
+-- Portfolio media (gallery images per portfolio entry, separate from the entries' single cover image)
+CREATE TABLE portfolio_media (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    entry_id INT NOT NULL,
+    media_url VARCHAR(255) NOT NULL,
+    display_order INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (entry_id) REFERENCES portfolio_entries(id) ON DELETE CASCADE
+    );
+
+
+
     
     
 -- Auto contact submission clean up
@@ -87,8 +98,6 @@ END $$
 
 
 
-
-CREATE ELEME
 -- Creating admin account
 -- DONT push to git with real details!
 -- INSERT INTO users (full_name, email, password_hash, role, password_changed)
