@@ -30,11 +30,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     prevBtn.addEventListener('click',function() {
 
-    postGrid.scrollBy({left:-getScrollAmount(),behaviour:'smooth'});
+    postGrid.scrollBy({left:-getScrollAmount(),behavior:'smooth'});
 
     });
     nextBtn.addEventListener('click',function(){
-        postGrid.scrollBy({left:getScrollAmount(),behaviour:'smooth'});
+        postGrid.scrollBy({left:getScrollAmount(),behavior:'smooth'});
     });
 
 

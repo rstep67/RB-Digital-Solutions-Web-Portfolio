@@ -105,7 +105,7 @@ $site_content = getSiteContent($pdo);
                         }
                         ?>
                         <?php if ($image_url): ?>
-                            <img src="<?=htmlspecialchars($image_url) ?>" alt="<?=htmlspecialchars($image_alt)?>">
+                            <img src="<?=htmlspecialchars($image_url) ?>" alt="<?=htmlspecialchars($image_alt)?>" loading="lazy">
                             <?php endif; ?>
 
 

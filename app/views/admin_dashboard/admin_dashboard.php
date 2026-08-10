@@ -447,10 +447,15 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         </Details>
 
 
-        <?php $show_site_content_messages = !empty($_SESSION['site_content_errors']) || !empty($_SESSION['success']); ?>
+        <?php $show_site_content_messages = !empty($_SESSION['site_content_errors']) || !empty($_SESSION['site_contentsuccess']); ?>
         <!--change site content-->
 
-        <?php if (!empty($_SESSION['site_content_errors'])): ?>
+        
+
+        <details class="admin-accordion" <?= $show_site_content_messages ? 'open' : '' ?>>
+            <summary>Site Content</summary>
+
+            <?php if (!empty($_SESSION['site_content_errors'])): ?>
                 <ul class="flash-errors">
                     <?php foreach ($_SESSION['site_content_errors'] as $msg): ?>
                         <li><?= htmlspecialchars($msg) ?></li>
@@ -463,9 +468,6 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
                 <p class="flash-success"><?= htmlspecialchars($_SESSION['site_content_success']) ?></p>
                 <?php unset($_SESSION['site_content_success']); ?>
             <?php endif; ?>
-
-        <details class="admin-accordion" <?= $show_site_content_messages ? 'open' : '' ?>>
-            <summary>Site Content</summary>
 
             <form action="<?= BASE_URL ?>/?page=update_site_content" method="POST"
                 onsubmit="return confirm('Save changes to site content?');">
