@@ -1,12 +1,5 @@
 <?php
-$site_content = getSiteContent($pdo);
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header('location: ' . BASE_URL . '/?page=login');
-    exit;
-}
 ?>
-
-
 <section class="a-dash-sect">
     <div class="container">
         <h1> Admin Dashboard </h1>
@@ -41,7 +34,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
                 <input type="email" id="email" name="email" required>
                 <label for="temp_password">Temporary Password</label>
                 <input type="text" id="temp_password" name="temp_password" required>
-                <input type="submit" value="Create client">;
+                <input type="submit" value="Create client">
 
             </form>
         </details>

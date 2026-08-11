@@ -34,19 +34,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($name)) {
         $error[] = 'Name is blank';
     }
+    elseif (strlen($name) > 100) {
+        $error[] = 'name cannot be longer than 100 characters';
+    }
 
     if (empty($email)) {
         $error[] = 'Email is blank';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    } 
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error[] = 'Email address is not valid';
     }
 
     if (empty($subject)) {
         $error[] = 'Subject is blank';
     }
+    elseif (strlen($subject) > 150) {
+        $error[] = 'subject cannot be longer than 150 characters';
+    }
 
     if (empty($message)) {
         $error[]='Message is blank';
+    }
+    elseif (strlen($message) > 2000) {
+        $error[] = 'message cannot be longer than 2000 characters';
     }
 
     if (empty($_POST['privacy_policy_agreed'])) {

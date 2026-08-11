@@ -1,8 +1,5 @@
 <?php
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'client') {
-    header('location: ' . BASE_URL . '/?page=login');
-    exit;
-}
+
 require_once __DIR__ . '/../../models/document_model.php';
 
 $stmt = $pdo->prepare('SELECT id, title, description, status, updated_at FROM projects     WHERE user_id =? ORDER BY updated_at DESC');
@@ -31,7 +28,7 @@ $my_projects = $stmt->fetchAll();
                     <details class="client-project-accordion">
                         <summary><?= htmlspecialchars($project['title']) ?>         
                         <span class="project-status-badge"><?= htmlspecialchars($project['status']) ?></span>
-                        
+
                         </summary>
                         <p style="white-space: pre-line;"><?= htmlspecialchars($project['description']) ?></p>
                         <p><small>last updated at: <?= htmlspecialchars($project['updated_at']) ?></small></p>

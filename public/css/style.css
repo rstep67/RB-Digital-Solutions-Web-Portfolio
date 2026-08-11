@@ -425,14 +425,14 @@ h2 {
 }
 
 /*client dash*/
-.dash-section h1, p {
+.dash-section h1, .dash-section p {
 text-align: center;
 }
 
 
 /*Admin dashboard*/
 
-.a-dash-sect h1, p {
+.a-dash-sect h1, .a-dash-sect p {
     text-align: center;
 }
 .a-dash-sect h1 {
@@ -479,6 +479,20 @@ details.client-project-accordion[open] summary::before {
 
 details.admin-accordion:hover, details.client-project-accordion:hover {
     background-color: rgb(199, 225, 225);
+}
+
+details.admin-accordion select, details.admin-accordion input[type="text"],
+details.admin-accordion input[type="email"], details.admin-accordion textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+details.admin-accordion label {
+    display:block; 
+    padding: 5px;
 }
 
 /*client dashboard*/

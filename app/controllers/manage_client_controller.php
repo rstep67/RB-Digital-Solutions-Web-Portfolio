@@ -21,8 +21,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($full_name)) {
         $error[] = 'Full name is blank ';
     }
+    else if (strlen($full_name) > 100) {
+     $error[] = 'Full name cannot be longer than 100 characters';
+    }
+
+
     if (empty($email)) {
         $error[] = 'Email address is blank';
+    }
+
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error[] = 'Email address not valid';
     }
     
     if (empty($error)) {

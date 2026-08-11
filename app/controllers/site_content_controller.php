@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ .'/../models/site_content_model.php';
 
+// only runs when form submitted 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (($_SESSION['role'] ?? null) !== 'admin') {
         header('Location: ' . BASE_URL . '/?page=login');

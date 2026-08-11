@@ -1,10 +1,4 @@
 <?php
-//page requires authenticated session, redirect to login if not loggd in
-if (!isset($_SESSION['user_id'])) {
-    header('location: ' . BASE_URL . '/?page=login');
-    exit;
-}
-
 
 $change_pw_error = $_SESSION['change_pw_error'] ?? '';
 unset($_SESSION['change_pw_error']);

@@ -27,7 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (empty($status)) {
         $errors[] = 'status is blank';
-        
+
+    }
+
+    elseif (strlen($status) > 150) {
+        $errors[] = 'Status cannot be longer than 150 characters';
     }
 
     if (empty($errors)) {

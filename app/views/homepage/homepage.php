@@ -30,13 +30,13 @@ $site_content = getSiteContent($pdo);
     <div class="Services">
         <h2>Experience</h2>
         <p>
-            <?= nl2br(htmlspecialchars($site_content['experience_text'])) ?>
+            <?= (htmlspecialchars($site_content['experience_text'])) ?>
         </p>
     </div>
     <div class="Skills">
         <h2> Skills </h2>
         <p>
-            <?= nl2br(htmlspecialchars($site_content['skills_text'])) ?> 
+            <?= (htmlspecialchars($site_content['skills_text'])) ?> 
         </p>
     </div>
 

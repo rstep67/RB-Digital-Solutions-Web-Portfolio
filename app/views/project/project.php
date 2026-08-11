@@ -1,15 +1,5 @@
 <?php
-$entry_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-if (!$entry_id) {
-    header('location: ' . BASE_URL . '/?page=homepage');
-    exit;
-
-}
-
-require_once __DIR__ . '/../../models/portfolio_model.php';
-$entry = getPortfolioEntryById($pdo,$entry_id);
-$gallery_images = getPortfolioMedia($pdo, $entry_id);
 
 if (!$entry) {
     header('location: ' . BASE_URL . '/?page=homepage');

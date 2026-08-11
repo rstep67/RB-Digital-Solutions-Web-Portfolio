@@ -19,6 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'client name is blank';
     }
 
+    else if (strlen($author_name) > 150) {
+        $errors[] = 'client name cannot be longer than 150 characters';
+    }
+
     if(empty($content)) {
         $errors[] = 'testimonial is blank';
     }

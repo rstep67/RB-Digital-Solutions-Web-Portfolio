@@ -5,7 +5,7 @@ require_once __DIR__ . '/app/models/db_connect.php';
 
 $page = $_GET['page'] ?? 'homepage';
 
-//handle the login form submission so header() redirects work
+//must run before header.php as contain header() which cant run if theres already output
 if ($page === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     
     require __DIR__ . '/app/controllers/login_controller.php';
@@ -63,8 +63,47 @@ if ($page === 'download_document') {
     exit; 
 }
 
+
+
 else if ($page === 'delete_document_controller' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require __DIR__ . '/app/controllers/delete_document_controller.php';
+}
+
+
+
+
+//login guards for pages with no controller so they run before html output 
+
+if ($page === 'change_password' && !isset($_SESSION['user_id'])) {
+    header('location: ' . BASE_URL . '/?page=login');
+    exit;
+}
+
+if ($page === 'dashboard' && (!isset($_SESSION['role']) || $_SESSION['role'] !== 'client')) {
+    header('location: ' . BASE_URL . '/?page=login');
+    exit;
+}
+
+if ($page === 'admin_dashboard' && (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin')) {
+    header('location: ' . BASE_URL . '/?page=login');
+    exit;
+}
+
+//returns to homepage if no project id
+//if id valid checks if portfolio entry exists
+if ($page === 'project') {
+    $entry_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    if (!$entry_id) {
+        header('location: ' . BASE_URL . '/?page=homepage');
+        exit;
+    }
+    require_once __DIR__ . '/app/models/portfolio_model.php';
+    $entry = getPortfolioEntryById($pdo, $entry_id);
+    $gallery_images = getPortfolioMedia($pdo, $entry_id);
+    if (!$entry) {
+        header('location: ' . BASE_URL . '/?page=homepage');
+        exit;
+    }
 }
     
     
@@ -82,7 +121,13 @@ $pagetitles = [
 $pagetitle = $pagetitles[$page] ?? 'Home';
 
 
+
+
+
 require __DIR__ . '/app/views/partials/header.php';
+
+
+
 
 switch ($page) {
     case 'login':

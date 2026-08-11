@@ -30,6 +30,10 @@ if (empty($status)) {
     $status = 'Not started';
 }
 
+if (strlen($status) > 150) {
+    $errors[] = 'Status canoot be longer than 150 characters';
+}
+
 if (empty($errors)) {
     $check = $pdo->prepare("SELECT id FROM users WHERE id = ? AND role = 'client'");
     $check ->execute([$user_id]);
