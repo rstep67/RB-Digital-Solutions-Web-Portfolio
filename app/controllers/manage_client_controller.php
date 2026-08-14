@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (empty($error)) {
         try {
+            //check email already exixts where email matches with different id
             $check = $pdo ->prepare('SELECT id FROM users WHERE email = ? AND id != ?');
             $check ->execute([$email, $client_id]);
 

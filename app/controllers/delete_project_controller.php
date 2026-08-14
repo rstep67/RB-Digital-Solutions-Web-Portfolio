@@ -29,6 +29,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $doc_stmt ->execute([$project_id]);
                 $documents = $doc_stmt ->fetchAll();
 
+                //pdo transaction mechanism from CTEC2712 accessingdatabases lecture
+
                 $pdo ->beginTransaction();
 
                 $delete_docs = $pdo ->prepare('DELETE FROM documents WHERE project_id =?');

@@ -15,6 +15,7 @@
             <?php if (!empty($_SESSION['client_errors'])): ?>
         <ul class="form-errors">
             <?php foreach ($_SESSION['client_errors'] as $msg): ?>
+                //eg of output escaping
                 <li><?= htmlspecialchars($msg) ?></li>
             <?php endforeach; ?>
         </ul>
@@ -44,6 +45,8 @@
         require_once __DIR__ . '/../../models/user_model.php';
         require_once __DIR__ . '/../../models/testimonial_model.php';
         require_once __DIR__ . '/../../models/document_model.php';
+        require_once __DIR__ . '/../../models/site_content_model.php';
+        $site_content = getSiteContent($pdo);
 
         $all_clients = getAllClients($pdo);
 

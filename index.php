@@ -5,6 +5,8 @@ require_once __DIR__ . '/app/models/db_connect.php';
 
 $page = $_GET['page'] ?? 'homepage';
 
+//
+
 //must run before header.php as contain header() which cant run if theres already output
 if ($page === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     
@@ -47,7 +49,7 @@ else if ($page === 'delete_project_controller' && $_SERVER['REQUEST_METHOD'] ===
 }
 
 else if ($page === 'privacy_policy' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    require __DIR__ . '/app/views/privacy_policy.php';
+    require __DIR__ . '/app/views/privacy_policy/privacy~_policy.php';
 }
 
 else if ($page === 'toggle_testimonial_controller') {
@@ -58,10 +60,7 @@ else if ($page === 'manage_project_controller' && $_SERVER['REQUEST_METHOD'] ===
     require __DIR__ . '/app/controllers/manage_project_controller.php';
 }
 
-if ($page === 'download_document') {
-    require __DIR__ . '/app/controllers/download_document_controller.php';
-    exit; 
-}
+
 
 
 
@@ -158,7 +157,6 @@ switch ($page) {
         break;
 
     case 'admin_dashboard':
-        require __DIR__ .'/app/models/site_content_model.php';
         require __DIR__ .'/app/views/admin_dashboard/admin_dashboard.php';
         break;
 

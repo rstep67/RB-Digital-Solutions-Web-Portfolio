@@ -17,7 +17,7 @@ if(!$document) {
     die('document notn found');
 }
 
-
+//check if admin or client whos id matches 
 $is_admin = ($_SESSION['role'] === 'admin');
 $is_owner = ($_SESSION['role'] === 'client' && $_SESSION['user_id'] == $document['user_id']);
 if (!$is_admin && !$is_owner) {
@@ -40,11 +40,20 @@ $mime_types = [
     'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 ];
 
-
+//make lowercase 
 $extension = strtolower(pathinfo($full_path, PATHINFO_EXTENSION));
+//octet stream fallback in case file type isnt mapped still download it
+/**
+ * MIME types (IANA media types) - HTTP | MDN. (2025). [online] MDN Web Docs. 
+ * Available at: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types 
+ */
 $content_type = $mime_types[$extension] ?? 'application/octet-stream';
 
 header('content-type: ' . $content_type);
+/**
+ * Content-Disposition - HTTP | MDN. (2025). [online] MDN Web Docs.
+ *  Available at: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Disposition [Accessed 14 Aug. 2026].
+ */
 header('content-disposition: attachment;filename="' . basename($document['file_name']) . '"');
 header('content-length: ' . filesize($full_path));
 readfile($full_path);

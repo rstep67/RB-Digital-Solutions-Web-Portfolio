@@ -78,7 +78,7 @@ CREATE TABLE site_content (
     experience_text TEXT NOT NULL,
     skills_text TEXT NOT NULL,
     is_available BOOL NOT NULL DEFAULT TRUE,
-    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 
 );
 --Add single entry used by system
@@ -108,15 +108,15 @@ END $$
 --Add new testimonial
 INSERT INTO testimonials (content, author_name, is_featured)
 VALUES ('RB Digital Solutions redesigned our site and our enquiries doubled within a month.', 'Willday Wealth Management', 1),
-VALUES ('i like treats', 'Buffy', 0);
+('i like treats', 'Buffy', 0);
 
 
 
 --Add new portfolio media
 INSERT INTO portfolio_media (entry_id, media_url, display_order)
 VALUES (1, 'uploads/portfolio/willdaywm-carousel.png', 1),
-VALUES (1, 'uploads/portfolio/willdaywm-statement-archive.png', 2),
-VALUES (1, 'uploads/portfolio/willdaywm-download-the-app.png', 3);
+(1, 'uploads/portfolio/willdaywm-statement-archive.png', 2),
+(1, 'uploads/portfolio/willdaywm-download-the-app.png', 3);
 
 
 -- Creating admin account
@@ -131,10 +131,10 @@ VALUES ('Rosie Admin', 'test@rbdigitalsolutions.co.uk', 'hashedpassword', 'admin
 INSERT INTO portfolio_entries (id, title, description, media_url)
 VALUES (1, 'Willday Wealth Management', 'Willday Wealth Management is a WordPress website I've worked on 
 for two and a half years, having joined initially as an intern before being offered a permanent role. 
-What began as a completely self -taught web development position has since expanded to cover the company's full digital presence, 
-and since January I've taken on responsibility for their marketing alongside ongoing site development, including content updates, design work, 
+What began as a completely self -taught web development position has since expanded to cover the company''s full digital presence, 
+and since January I''ve taken on responsibility for their marketing alongside ongoing site development, including content updates, design work, 
 and day-to-day maintenance. This role has given me hands-on experience with Gravity Forms, Advanced Custom Fields (ACF), and the Divi page builder, 
-along with building custom layouts tailored to the site's needs. My work on the site and its marketing has consistently been recognised positively by the team.', 
+along with building custom layouts tailored to the site''s needs. My work on the site and its marketing has consistently been recognised positively by the team.', 
 '/Web-Portfolio/public/images/willdaywm.png');
 
 INSERT INTO portfolio_entries (title, description, media_url)

@@ -1,6 +1,5 @@
 <?php 
 
-$site_content = getSiteContent($pdo);
 //fetches current site content 
 function getSiteContent($pdo) {
     $stmt = $pdo->prepare('SELECT experience_text, skills_text, is_available FROM site_content WHERE id=1');
