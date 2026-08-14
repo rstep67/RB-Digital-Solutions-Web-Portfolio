@@ -77,11 +77,11 @@ CREATE TABLE site_content (
     id INT NOT NULL DEFAULT 1 PRIMARY KEY,
     experience_text TEXT NOT NULL,
     skills_text TEXT NOT NULL,
-    is_available BOOL NOT NULL DEFAULT TRUE,
+    is_available BOOLEAN NOT NULL DEFAULT TRUE,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 
 );
---Add single entry used by system
+-- Add single entry used by system
 INSERT INTO site_content (id, experience_text,skills_text, is_available)
 VALUES(1, 'I have around 2.5 years of experience in WordPress web development, gained through self-directed projects built in my own time. Over this period I have worked on custom theme development, site builds from the ground up, and general WordPress configuration and maintenance, alongside broader full-stack development skills developed through academic study.', 'Custom WordPress theme development and customisation, PHP, MySQL/MariaDB database design, HTML5 and CSS3, responsive and accessible design, front-end/back-end integration, version control with Git, and general full-stack web development.', 1);
     
@@ -90,46 +90,29 @@ VALUES(1, 'I have around 2.5 years of experience in WordPress web development, g
 
 -- Auto contact submission clean up
 -- Based off 
---Dhandala, N. (2026) How to Schedule Data Cleanup Jobs with MySQL Events. OneUptime Blog. 
---Available at: https://oneuptime.com/blog/post/2026-03-31-mysql-schedule-data-cleanup-events/view (Accessed: 9 August 2026)
+-- Dhandala, N. (2026) How to Schedule Data Cleanup Jobs with MySQL Events. OneUptime Blog. 
+-- Available at: https://oneuptime.com/blog/post/2026-03-31-mysql-schedule-data-cleanup-events/view (Accessed: 9 August 2026)
 
-DELIMITER $$
 
 CREATE EVENT IF NOT EXISTS delete_old_contact_submissions
 ON SCHEDULE EVERY 1 DAY
 STARTS CURRENT_TIMESTAMP
 DO
-BEGIN
+
 
 DELETE FROM contact_submissions
 WHERE submitted_at < (NOW() - INTERVAL 90 DAY);
-END $$
 
---Add new testimonial
+
+-- Add new testimonial
 INSERT INTO testimonials (content, author_name, is_featured)
 VALUES ('RB Digital Solutions redesigned our site and our enquiries doubled within a month.', 'Willday Wealth Management', 1),
 ('i like treats', 'Buffy', 0);
 
-
-
---Add new portfolio media
-INSERT INTO portfolio_media (entry_id, media_url, display_order)
-VALUES (1, 'uploads/portfolio/willdaywm-carousel.png', 1),
-(1, 'uploads/portfolio/willdaywm-statement-archive.png', 2),
-(1, 'uploads/portfolio/willdaywm-download-the-app.png', 3);
-
-
--- Creating admin account
--- DONT push to git with real details!
-INSERT INTO users (full_name, email, password_hash, role, password_changed)
-VALUES ('Rosie Admin', 'test@rbdigitalsolutions.co.uk', 'hashedpassword', 'admin', TRUE);
-
-
-
 -- adding new portfolio entry, replace placeholders with real VALUES
 
 INSERT INTO portfolio_entries (id, title, description, media_url)
-VALUES (1, 'Willday Wealth Management', 'Willday Wealth Management is a WordPress website I've worked on 
+VALUES (1, 'Willday Wealth Management', 'Willday Wealth Management is a WordPress website I''ve worked on 
 for two and a half years, having joined initially as an intern before being offered a permanent role. 
 What began as a completely self -taught web development position has since expanded to cover the company''s full digital presence, 
 and since January I''ve taken on responsibility for their marketing alongside ongoing site development, including content updates, design work, 
@@ -150,3 +133,18 @@ created to explore the basics of electronics and physical computing. The system 
 when soil moisture drops below a set threshold, automatically dispensing water until the sensor reads sufficiently moist again, 
 then stopping. It was a simple, self-directed project built out of personal interest, and one I genuinely enjoyed working on.', 
 '/Web-Portfolio/public/images/autohydro.jpg');
+
+-- Add new portfolio media
+INSERT INTO portfolio_media (entry_id, media_url, display_order)
+VALUES (1, 'uploads/portfolio/willdaywm-carousel.png', 1),
+(1, 'uploads/portfolio/willdaywm-statement-archive.png', 2),
+(1, 'uploads/portfolio/willdaywm-download-the-app.png', 3);
+
+
+-- Creating admin account
+-- DONT push to git with real details!
+INSERT INTO users (full_name, email, password_hash, role, password_changed)
+VALUES ('Rosie Admin', 'test@rbdigitalsolutions.co.uk', 'hashedpassword', 'admin', TRUE);
+
+
+
